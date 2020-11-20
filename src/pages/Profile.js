@@ -44,12 +44,12 @@ function Profile() {
               </ul>
               <h4>Account Options </h4>
               <ul className="no-list reset">
-                <li>
-                  <button className={styles.btn}> Reset Password </button>
+                {/* <li>
+                  <button className={styles.btn} > Reset Password </button>
                 </li>
                 <li>
                   <button className={styles.btn}> Reset Hideout </button>
-                </li>
+                </li> */}
                 <li>
                   <button
                     className={styles.btn}

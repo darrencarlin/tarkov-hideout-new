@@ -9,12 +9,14 @@ import jwtDecode from "jwt-decode";
 // Components
 import Navigation from "./components/Navigation";
 import AuthRoute from "./util/AuthRoute";
+import GA from "./components/GoogleAnalytics";
 // Pages
 import Hideout from "./pages/Hideout";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -83,6 +85,7 @@ function App() {
           />
           <Redirect to="/" />
         </Switch>
+        <GA page="hideout" code="G-SYZEGNJZK0" />
       </Router>
     );
   }
