@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Bender-Bold";
+  src: url("./Bender-Bold/font.woff2") format("woff2"),
+    url("./Bender-Bold/font.woff") format("woff");
+}
+@font-face {
+  font-family: "Bender";
+  src: url("./Bender/font.woff2") format("woff2"),
+    url("./Bender/font.woff") format("woff");
+}

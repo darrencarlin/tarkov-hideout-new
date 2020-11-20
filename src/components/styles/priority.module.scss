@@ -1,0 +1,130 @@
+.items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  h2 {
+    width: 100%;
+    padding: 5px 10px;
+    text-decoration: underline;
+  }
+  .category {
+    width: 100%;
+
+    .header {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      padding: 5px 10px;
+
+      .header__total,
+      .header__remaining,
+      .header__priority {
+        text-align: center;
+      }
+
+      .header__title {
+        margin: 0 0 5px 0;
+        width: 40%;
+      }
+      .header__total {
+        width: 15%;
+      }
+      .header__remaining {
+        width: 30%;
+      }
+      .header__priority {
+        width: 15%;
+      }
+    }
+    .body {
+      .itemList {
+        padding: 10px;
+        background-color: var(--item-background-color);
+        box-shadow: var(--box-shadow);
+        border: var(--border-color);
+        .item {
+          display: flex;
+
+          align-items: center;
+          padding: 10px 5px;
+          &:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+          }
+
+          .item__total,
+          .item__remaining,
+          .item__priority {
+            text-align: center;
+            font-weight: bold;
+          }
+
+          .item__name {
+            width: 40%;
+          }
+          .item__total {
+            width: 15%;
+          }
+          .item__remaining {
+            width: 30%;
+          }
+          .item__priority {
+            transform: scale(1.5);
+            width: 15%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Item CSS
+
+// .item {
+//   display: flex;
+//   justify-content: space-evenly;
+//   align-items: center;
+//   padding: 10px 5px;
+//   &:not(:last-child) {
+//     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+//   }
+
+//   .name {
+//     width: 50%;
+//   }
+
+//   .total {
+//     width: 10%;
+//     text-align: center;
+//   }
+
+//   .remaining {
+//     width: 25%;
+//     text-align: center;
+//   }
+
+//   .remaining {
+//   }
+//   input[type="checkbox"] {
+//     transform: scale(1.5);
+//     width: 15%;
+//     text-align: center;
+//   }
+// }
+
+// Items CSS
+
+// .item-header {
+
+//   .heading {
+//     width: 50%;
+//     h3 {
+//       margin: 0 0 5px 0;
+//     }
+//   }
+
+// .item-list {
+//   padding: 10px;
+//   background-color: var(--item-background-color);
+// }

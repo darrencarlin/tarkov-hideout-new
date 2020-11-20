@@ -1,0 +1,113 @@
+.tabs {
+  margin: 0 0 20px 0;
+  .top-menu,
+  .bottom-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .tab {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      height: 75px;
+      width: 100%;
+      background-color: #333;
+      margin: 0 0 10px 0;
+      position: relative;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--box-shadow);
+      border: var(--border-color);
+
+      span:first-of-type {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #fff;
+        font-family: var(--font-family-body);
+      }
+      &:hover {
+        background-color: #444;
+      }
+    }
+
+    .active {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #fff;
+    }
+  }
+
+  .top-menu {
+    margin: 0 0 50px 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .tabs {
+    margin: 0 0 20px 0;
+    .top-menu,
+    .bottom-menu {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+
+      .tab {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        height: 75px;
+        background-color: #333;
+        margin: 10px;
+        position: relative;
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--box-shadow);
+        border: var(--border-color);
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+
+        span:first-of-type {
+          font-size: 1.5em;
+          font-weight: bold;
+          color: #fff;
+          font-family: var(--font-family-body);
+        }
+        &:hover {
+          background-color: #444;
+        }
+      }
+
+      .active {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: #fff;
+      }
+    }
+
+    .top-menu {
+      margin: 0;
+      .tab {
+        width: 25%;
+      }
+    }
+    .bottom-menu {
+      .tab {
+        width: 20%;
+      }
+    }
+  }
+}

@@ -1,0 +1,82 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+body {
+  line-height: 1.6;
+  color: var(--font-color);
+  letter-spacing: 1px;
+  font-family: var(--font-family-body);
+  font-weight: 300;
+}
+
+a {
+  color: var(--font-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin: 0 0 25px 0;
+  font-family: var(--font-family-headings);
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.8rem;
+}
+h3 {
+  font-size: 1.6rem;
+}
+h4 {
+  font-size: 1.4rem;
+}
+h5 {
+  font-size: 1.3rem;
+}
+h6 {
+  font-size: 1rem;
+}
+
+.lead-title {
+  display: block;
+  margin: 0 0 35px 0;
+  font-family: var(--font-family-headings);
+}
+
+@media screen and (min-width: 425px) {
+  .lead-title {
+    font-size: calc(2rem * 1.2);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .lead-title {
+    font-size: calc(2rem * 1.4);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .lead-title {
+    font-size: calc(2rem * 1.5);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .lead-title {
+    font-size: calc(2rem * 1.6);
+  }
+}

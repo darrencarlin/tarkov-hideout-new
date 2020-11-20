@@ -1,0 +1,30 @@
+.backToTop {
+  transition: all 0.3s ease-in-out;
+  .backToTop__btn {
+    cursor: pointer;
+    background: #9a8866;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 25px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      font-size: 1.05rem;
+    }
+  }
+}
+
+.fadeIn {
+  animation: fadeIn ease 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

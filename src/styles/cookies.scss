@@ -1,0 +1,44 @@
+.cookieConsent {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  max-width: 100%;
+  z-index: 1000;
+  position: fixed;
+  .cookie-text,
+  .cookie-btn {
+    color: #fff;
+    font-family: Lato, "sans-serif";
+    padding: 10px;
+    font-size: 1rem;
+  }
+  .cookie-btn {
+    background: #19b31fcc;
+    color: #fff;
+    border: 0;
+    line-height: 1.6;
+    cursor: pointer;
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  .cookie-text {
+    padding: 10px;
+    a {
+      padding: 0 0 0 5px;
+      color: #fff;
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .cookieConsent {
+    right: 0px;
+    left: initial;
+    max-width: 25%;
+  }
+}
