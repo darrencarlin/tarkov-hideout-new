@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import api from "../util/axios";
+import axios from "axios";
 import _ from "lodash";
 
 var initialHideout = {};
@@ -116,19 +116,26 @@ export const getInitialHideout = () => async (dispatch, getState) => {
     const options = {
       headers: { Authorization: `Bearer ${localUser.token}` },
     };
-    const res = await api.get(`/hideout/${localUser.userId}`, options);
+    const res = await axios.get(
+      `https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/${localUser.userId}`,
+      options
+    );
     localStorage.setItem("hideout", JSON.stringify(res.data));
   }
   // if there is a currently a hideout (in local storage)
   if (localStorageHideout === null) {
-    const res = await api.get("/hideout");
+    const res = await axios.get(
+      "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout"
+    );
     localStorage.setItem("hideout", JSON.stringify(res.data.hideout));
     dispatch(setHideout(res.data.hideout));
   }
 };
 
 export const getUserHideout = (userId) => async (dispatch) => {
-  const res = await api.get(`/hideout/${userId}`);
+  const res = await axios.get(
+    `https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/${userId}`
+  );
   localStorage.setItem("hideout", JSON.stringify(res.data.hideout));
   dispatch(setHideout(res.data.hideout));
 };
@@ -156,7 +163,11 @@ export const setStorgage = ({ authenticated }) => async (
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    await api.post(`/hideout/${userId}`, updatedHideout, options);
+    await axios.post(
+      `https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/${userId}`,
+      updatedHideout,
+      options
+    );
   }
 };
 

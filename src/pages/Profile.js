@@ -19,8 +19,13 @@ function Profile() {
       headers: { Authorization: `Bearer ${token}` },
     };
 
-    await axios.delete(`/user/${userId}`, options);
-    await axios.post("/count/decrement");
+    await axios.delete(
+      `https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/user/${userId}`,
+      options
+    );
+    await axios.post(
+      "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/count/decrement"
+    );
     localStorage.removeItem("user");
     localStorage.removeItem("hideout");
     window.location.href = "/";

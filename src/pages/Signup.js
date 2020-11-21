@@ -31,19 +31,24 @@ function Signup() {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-
-    axios
-      .post("/signup", {
-        handle,
-        email,
-        password,
-        confirmPassword,
-        version,
-      })
+    //us-central1-tarkov-hideout-d2603.cloudfunctions.net/api
+    https: axios
+      .post(
+        "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/signup",
+        {
+          handle,
+          email,
+          password,
+          confirmPassword,
+          version,
+        }
+      )
       .then((user) => {
         dispatch(setUser(user.data));
         localStorage.setItem("user", JSON.stringify(user.data));
-        axios.post("/count/increment");
+        axios.post(
+          "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/count/increment"
+        );
         return user;
       })
       .then((user) => {
@@ -54,7 +59,11 @@ function Signup() {
         const userId = user.data.userId;
         const body = { userId, version, hideout };
         axios
-          .post("/hideout", body, options)
+          .post(
+            "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout",
+            body,
+            options
+          )
           .then((hideout) => {
             dispatch(setHideout(hideout.data));
             localStorage.setItem("hideout", JSON.stringify(hideout.data));

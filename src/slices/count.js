@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import api from "../util/axios";
+import axios from "axios";
 
 var initialCount = 0;
 
@@ -25,13 +25,17 @@ export const selectCount = (state) => state.count;
 
 export const getCount = () => async (dispatch) => {
   try {
-    const res = await api.get("/count");
+    const res = await axios.get(
+      "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/count"
+    );
     dispatch(setCount(res.data.count));
   } catch (err) {}
 
   if (!localStorage.getItem("count"))
     try {
-      const res = await api.get("/count");
+      const res = await axios.get(
+        "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/count"
+      );
       dispatch(setCount(res.data.count));
       localStorage.setItem("count", JSON.stringify(res.data.count));
     } catch (err) {

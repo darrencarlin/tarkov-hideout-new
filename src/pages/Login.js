@@ -18,7 +18,10 @@ function Login(props) {
     // get user data
     setLoading(true);
     try {
-      const login = await axios.post("/login", { email, password });
+      const login = await axios.post(
+        "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/login",
+        { email, password }
+      );
       dispatch(setUser(login.data));
       localStorage.setItem("user", JSON.stringify(login.data));
       // get hideout data
