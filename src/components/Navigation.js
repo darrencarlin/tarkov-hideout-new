@@ -39,7 +39,7 @@ function Navigation() {
               </Link>
             </li>
             {count > 0 && (
-              <li>
+              <li className={styles.count}>
                 <Fade>
                   <span>{count} PMC's in their hideout</span>
                 </Fade>

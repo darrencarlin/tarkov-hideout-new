@@ -1,6 +1,6 @@
 .donate {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
   align-content: flex-end;
   width: 100%;
@@ -8,8 +8,27 @@
     margin: 0;
   }
   a {
+    display: inline-block;
     border: 1px solid white;
     border-radius: 10px;
+    margin: 25px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .donate {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-content: flex-end;
+    width: 100%;
+    img {
+      margin: 0;
+    }
+    a {
+      border: 1px solid white;
+      border-radius: 10px;
+    }
   }
 }
 
@@ -31,18 +50,28 @@
     a {
       margin: 0 10px 0 10px;
       text-decoration: none;
+      font-size: 1.2rem;
+    }
+    span {
+      font-size: 1.2rem;
     }
   }
 
   ul:first-of-type {
     order: 2;
     text-align: center;
+    margin: 0 0 50px 0;
+    li:first-of-type {
+      height: 85px;
+    }
   }
 
   ul:last-of-type {
     order: 1;
     display: flex;
     justify-content: center;
+
+    align-items: flex-start;
     margin: 10px 0;
   }
 }
@@ -69,6 +98,7 @@
       flex-direction: column;
       order: 1;
       text-align: left;
+      margin: 0;
       h1 {
         margin: 0 0 10px 0;
       }
@@ -80,9 +110,13 @@
       a {
         margin: 0;
       }
+      li:first-of-type {
+        height: 50px;
+      }
     }
 
     ul:last-of-type {
+      margin: 0;
       li {
         display: flex;
         align-items: center;
@@ -94,7 +128,7 @@
           display: flex;
           flex-direction: row;
           align-items: center;
-          font-size: 1.1rem;
+
           svg {
             margin-left: 5px;
           }
