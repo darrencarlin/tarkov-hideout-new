@@ -72,7 +72,7 @@ function Profile() {
                   </button>
                 </li>
               </ul>
-              <h4>Change Version</h4>
+              {/* <h4>Change Version</h4>
               <p>Changing your version will reset your hideout!</p>
               <form>
                 <select
@@ -93,7 +93,7 @@ function Profile() {
                   value={loading ? "Changing..." : "Change"}
                   onClick={(evt) => handleSubmit(evt)}
                 />
-              </form>
+              </form> */}
             </>
           )}
         </div>

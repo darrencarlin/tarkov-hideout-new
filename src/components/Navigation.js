@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { VscAccount, VscSignIn, VscSignOut } from "react-icons/vsc";
+
 // Redux
 import { useSelector } from "react-redux";
 import { selectCount } from "../slices/count";
@@ -21,6 +22,15 @@ function Navigation() {
   return (
     <nav className="section">
       <div className="row mw-desktop-large">
+        <div className={styles.donate}>
+          <a
+            href="https://www.buymeacoffee.com/darrenc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="https://img.buymeacoffee.com/button-api/?text=Buy me a Tushonka&emoji=🥫&slug=darrenc&button_colour=333333&font_colour=ffffff&font_family=Inter&outline_colour=ffffff&coffee_colour=FFDD00" />
+          </a>
+        </div>
         <div className={`col-xs ${styles.navigationMenus}`}>
           <ul className="no-list reset">
             <li>

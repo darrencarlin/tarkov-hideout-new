@@ -9,6 +9,7 @@ import jwtDecode from "jwt-decode";
 import axios from "axios";
 // Components
 import Navigation from "./components/Navigation";
+import Footer from "./components/Footer";
 import AuthRoute from "./util/AuthRoute";
 import GA from "./components/GoogleAnalytics";
 // Pages
@@ -89,6 +90,7 @@ function App() {
           />
           <Route component={Hideout} />
         </Switch>
+        <Footer />
         <GA page="hideout" code="G-SYZEGNJZK0" />
       </Router>
     );

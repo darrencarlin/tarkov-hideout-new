@@ -1,0 +1,15 @@
+.footer {
+  p {
+    text-align: center;
+  }
+  .icons {
+    display: flex;
+    justify-content: center;
+    padding: 0 50px 50px 50px;
+    svg {
+      margin: 10px 25px 25px 25px;
+      color: #fff;
+      font-size: 3em;
+    }
+  }
+}

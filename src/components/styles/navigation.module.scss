@@ -1,6 +1,22 @@
+.donate {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-content: flex-end;
+  width: 100%;
+  img {
+    margin: 0;
+  }
+  a {
+    border: 1px solid white;
+    border-radius: 10px;
+  }
+}
+
 .navigationMenus {
   display: flex;
   flex-direction: column;
+
   h1 {
     font-size: 2.5rem;
     margin: 0;
