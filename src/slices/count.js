@@ -29,6 +29,7 @@ export const getCount = () => async (dispatch) => {
       "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/count"
     );
     dispatch(setCount(res.data.count));
+    localStorage.setItem("count", JSON.stringify(res.data.count));
   } catch (err) {}
 
   if (!localStorage.getItem("count"))

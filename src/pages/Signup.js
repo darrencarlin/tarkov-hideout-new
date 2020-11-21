@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "../slices/user";
@@ -13,6 +13,8 @@ function Signup() {
   const { user } = useSelector(selectUser);
   const { hideout } = useSelector(hideoutSelector);
   const dispatch = useDispatch();
+  const history = useHistory();
+
   // Local state
   const [loading, setLoading] = useState(false);
   const [handle, setHandle] = useState("");
@@ -67,7 +69,7 @@ function Signup() {
           .then((hideout) => {
             dispatch(setHideout(hideout.data));
             localStorage.setItem("hideout", JSON.stringify(hideout.data));
-            window.location.href = "/";
+            history.push("/");
           })
           .catch((err) => {
             setLoading(false);

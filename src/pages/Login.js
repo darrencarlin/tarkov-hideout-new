@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "../slices/user";
@@ -12,6 +12,7 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +33,7 @@ function Login(props) {
       });
       dispatch(setHideout(hideout.data));
       localStorage.setItem("hideout", JSON.stringify(hideout.data));
-      window.location.href = "/";
+      history.push("/");
     } catch (err) {
       setLoading(false);
       console.log(err.response.data);

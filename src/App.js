@@ -49,7 +49,7 @@ function App() {
         authenticated = true;
       }
     }
-    dispatch(getInitialHideout());
+    !authenticated ? dispatch(getInitialHideout()) : false;
     dispatch(getUser());
     dispatch(getCount());
     setLoading(false);
@@ -83,7 +83,7 @@ function App() {
             component={Login}
             authenticated={authenticated}
           />
-          <Redirect to="/" />
+          <Route component={Hideout} />
         </Switch>
         <GA page="hideout" code="G-SYZEGNJZK0" />
       </Router>
