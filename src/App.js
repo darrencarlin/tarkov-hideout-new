@@ -6,6 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 // Components
 import Navigation from "./components/Navigation";
 import AuthRoute from "./util/AuthRoute";
@@ -27,6 +28,9 @@ import {
 import { getUser, selectUser } from "./slices/user";
 import { getCount } from "./slices/count";
 import "./styles/formbase.min.css";
+
+axios.defaults.baseURL =
+  "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api";
 
 function App() {
   // Get initial data if available (user, hideout) from local storage
