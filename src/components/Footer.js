@@ -10,6 +10,7 @@ function Footer() {
         <SiReact title="React" /> <SiRedux title="Redux" />
         <SiFirebase title="Firebase" /> <SiNetlify title="Netlify" />
       </div>
+    <p>Issues? Comments? email me at <a href="mailto:info@tarkovhideout.com" target="_blank" rel="noopener noreferrer"> info@tarkov-hideout.com</a></p>
     </footer>
   );
 }
