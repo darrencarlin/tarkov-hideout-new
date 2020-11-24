@@ -15,7 +15,6 @@ function PriorityView() {
       <div className={styles.category}>
         <div className={styles.header}>
           <h3 className={styles.header__title}>Items</h3>
-          <span className={styles.header__total}>Total</span>
           <span className={styles.header__remaining}>Remaining</span>
         </div>
         <div className={styles.body}>
@@ -25,9 +24,12 @@ function PriorityView() {
                 return (
                   <li className={styles.item} key={index}>
                     <span className={styles.item__name}>{item.item}</span>
-                    <span className={styles.item__total}>{item.total}</span>
+                    {/*  <span className={styles.item__total}>{item.total}</span>
                     <span className={styles.item__remaining}>
                       {item.remaining}
+                    </span> */}
+                    <span className={styles.count}>
+                      {item.total - item.remaining} / {item.total}
                     </span>
                   </li>
                 );

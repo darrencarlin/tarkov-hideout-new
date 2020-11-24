@@ -1,10 +1,13 @@
 .module {
   width: 100%;
-  margin: 0 0 25px 0;
+  margin: 10px;
 
   .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
 
     .header__subtitles {
       display: flex;
@@ -13,15 +16,9 @@
       margin: 0 0 5px 0;
     }
 
-    .header__need,
-    .header__complete {
-      margin: 0 10px;
-    }
-
     .header__title {
       display: flex;
       margin: 0 0 10px 0;
-      width: 100%;
     }
 
     .header__level {
@@ -33,6 +30,20 @@
       height: 32px;
       border-radius: 16px;
       border: 2px solid #fff;
+    }
+
+    .header__complete {
+      transform: scale(1.5);
+      width: 5%;
+      text-align: center;
+      svg {
+        stroke-width: 0.3;
+        fill: #ffffff;
+      }
+    }
+
+    .header__need {
+      text-align: right;
     }
   }
 
@@ -62,17 +73,17 @@
         width: 20%;
       }
       .item__need {
-        width: 20%;
-        font-weight: bold;
+        width: 30%;
+        text-align: right;
       }
       .item__complete {
-        width: 10%;
+        width: 5%;
         transform: scale(1.5);
       }
 
       .item__need,
       .item__complete {
-        text-align: center;
+        text-align: right;
       }
     }
     .other_requirments {
@@ -147,7 +158,7 @@
       justify-content: flex-end;
       align-items: center;
       padding: 0 10px;
-      span {
+      label {
         display: inline-block;
         margin: 0 20px 0 0;
       }
@@ -166,9 +177,10 @@
 
     .header {
       display: flex;
-      flex-direction: column;
-
-      padding: 10px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 10px;
 
       .header__subtitles {
         display: flex;
@@ -178,8 +190,8 @@
       }
       .header__title {
         display: flex;
-        margin: 0 0 5px 0;
-        width: 60%;
+        margin: 0 0 15px 0;
+        width: 80%;
       }
 
       .header__level {
@@ -195,8 +207,8 @@
 
       .header__need,
       .header__complete {
-        width: 20%;
-        text-align: center;
+        transform: scale(1.5);
+        width: 5%;
       }
     }
 
@@ -220,17 +232,17 @@
         }
 
         .item__name {
-          width: 60%;
+          width: 50%;
         }
         .item__have {
           width: 20%;
         }
         .item__need {
-          width: 20%;
+          width: 30%;
           font-weight: bold;
         }
         .item__complete {
-          width: 20%;
+          width: 5%;
           transform: scale(1.5);
         }
 

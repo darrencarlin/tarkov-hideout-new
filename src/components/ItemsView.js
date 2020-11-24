@@ -1,4 +1,5 @@
 import React from "react";
+import { BsLightning } from "react-icons/bs";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { tabsSelector } from "../slices/tabs";
@@ -29,21 +30,24 @@ function ItemsView() {
         <div className={styles.category}>
           <div className={styles.header}>
             <h3 className={styles.header__title}>Hardware</h3>
-            <div className={styles.header__subtitles}>
-              <span className={styles.header__total}>Total</span>
-              <span className={styles.header__remaining}>Remaining</span>
-              <span className={styles.header__priority}>Priority</span>
-            </div>
+            <span className={styles.header__priority}>
+              <BsLightning title="Prioritize this item" />
+            </span>
           </div>
           <div className={styles.body}>
             <ul className={styles.itemList}>
               {hideout.hardware_items.map((item, index) => (
                 <li className={styles.item} key={index}>
                   <span className={styles.item__name}>{item.item}</span>
-                  <span className={styles.item__total}>{item.total}</span>
+                  {/* <span className={styles.item__total}>{item.total}</span>
                   <span className={styles.item__remaining}>
                     {item.remaining}
+                  </span> */}
+
+                  <span className={styles.count}>
+                    {item.total - item.remaining} / {item.total}
                   </span>
+
                   <input
                     className={`${styles.item__priority}`}
                     type="checkbox"
@@ -66,20 +70,21 @@ function ItemsView() {
         <div className={styles.category}>
           <div className={styles.header}>
             <h3 className={styles.header__title}>Electronics</h3>
-            <div className={styles.header__subtitles}>
-              <span className={styles.header__total}>Total</span>
-              <span className={styles.header__remaining}>Remaining</span>
-              <span className={styles.header__priority}>Priority</span>
-            </div>
+            <span className={styles.header__priority}>
+              <BsLightning title="Prioritize this item" />
+            </span>
           </div>
           <div className={styles.body}>
             <ul className={styles.itemList}>
               {hideout.electronic_items.map((item, index) => (
                 <li className={styles.item} key={index}>
                   <span className={styles.item__name}>{item.item}</span>
-                  <span className={styles.item__total}>{item.total}</span>
+                  {/* <span className={styles.item__total}>{item.total}</span>
                   <span className={styles.item__remaining}>
                     {item.remaining}
+                  </span> */}
+                  <span className={styles.count}>
+                    {item.total - item.remaining} / {item.total}
                   </span>
                   <input
                     className={styles.item__priority}
@@ -103,20 +108,21 @@ function ItemsView() {
         <div className={styles.category}>
           <div className={styles.header}>
             <h3 className={styles.header__title}>Medical</h3>
-            <div className={styles.header__subtitles}>
-              <span className={styles.header__total}>Total</span>
-              <span className={styles.header__remaining}>Remaining</span>
-              <span className={styles.header__priority}>Priority</span>
-            </div>
+            <span className={styles.header__priority}>
+              <BsLightning title="Prioritize this item" />
+            </span>
           </div>
           <div className={styles.body}>
             <ul className={styles.itemList}>
               {hideout.medical_items.map((item, index) => (
                 <li className={styles.item} key={index}>
                   <span className={styles.item__name}>{item.item}</span>
-                  <span className={styles.item__total}>{item.total}</span>
+                  {/* <span className={styles.item__total}>{item.total}</span>
                   <span className={styles.item__remaining}>
                     {item.remaining}
+                  </span> */}
+                  <span className={styles.count}>
+                    {item.total - item.remaining} / {item.total}
                   </span>
                   <input
                     className={styles.item__priority}
@@ -140,24 +146,32 @@ function ItemsView() {
         <div className={styles.category}>
           <div className={styles.header}>
             <h3 className={styles.header__title}>Valuables</h3>
-            <div className={styles.header__subtitles}>
-              <span className={styles.header__total}>Total</span>
-              <span className={styles.header__remaining}>Remaining</span>
-              <span className={styles.header__priority}>Priority</span>
-            </div>
+            <span className={styles.header__priority}>
+              <BsLightning title="Prioritize this item" />
+            </span>
           </div>
           <div className={styles.body}>
             <ul className={styles.itemList}>
               {hideout.valuable_items.map((item, index) => (
                 <li className={styles.item} key={index}>
                   <span className={styles.item__name}>{item.item}</span>
-                  <span className={styles.item__total}>
+                  {/* <span className={styles.item__total}>
                     {item.total
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </span>
                   <span className={styles.item__remaining}>
                     {item.remaining
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </span> */}
+
+                  <span className={styles.count}>
+                    {(item.total - item.remaining)
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                    /{" "}
+                    {item.total
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </span>

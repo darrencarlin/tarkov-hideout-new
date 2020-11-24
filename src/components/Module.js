@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BsCheckCircle } from "react-icons/bs";
 // Redux
 import { useDispatch } from "react-redux";
 import {
@@ -32,10 +33,10 @@ function Module({ mod, moduleIndex }) {
         <h3 className={styles.header__title}>
           {module} {level}.
         </h3>
-        <div className={styles.header__subtitles}>
-          <span className={styles.header__need}>Need</span>
-          <span className={styles.header__complete}>Complete</span>
-        </div>
+
+        <span className={styles.header__complete}>
+          <BsCheckCircle title="Mark this item as complete!" />
+        </span>
       </div>
       <div className={styles.body}>
         {item_requirments.length > 0 && (
@@ -132,9 +133,12 @@ function Module({ mod, moduleIndex }) {
           </>
         )}
         <div className={styles.prioritize}>
-          <span>Prioritize {module} </span>
+          <label htmlFor={moduleIndex}>
+            Prioritize {module} {level}
+          </label>
           <input
             type="checkbox"
+            id={moduleIndex}
             checked={mod.prioritize}
             onClick={(evt) => {
               const checked = evt.target.checked;

@@ -15,6 +15,7 @@
     .header {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
       flex-wrap: nowrap;
       padding: 5px 10px;
 
@@ -26,13 +27,12 @@
 
       .header__title {
         margin: 0 0 5px 0;
-        width: 40%;
+        width: 50%;
       }
       .header__total {
         width: 15%;
       }
       .header__remaining {
-        width: 30%;
       }
       .header__priority {
         width: 15%;
@@ -46,7 +46,7 @@
         border: var(--border-color);
         .item {
           display: flex;
-
+          justify-content: space-between;
           align-items: center;
           padding: 10px 5px;
           &:not(:last-child) {
@@ -72,6 +72,95 @@
           .item__priority {
             transform: scale(1.5);
             width: 15%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    h2 {
+      width: 100%;
+      padding: 5px 10px;
+      text-decoration: underline;
+    }
+    .category {
+      width: 100%;
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        padding: 5px 10px;
+
+        .header__total,
+        .header__remaining,
+        .header__priority {
+          text-align: center;
+        }
+
+        .header__title {
+          margin: 0 0 5px 0;
+          width: 50%;
+        }
+        .header__total {
+          width: 15%;
+        }
+        .header__remaining {
+          text-align: left;
+          width: 32%;
+        }
+        .header__priority {
+          width: 15%;
+        }
+      }
+      .body {
+        .itemList {
+          padding: 10px;
+          background-color: var(--item-background-color);
+          box-shadow: var(--box-shadow);
+          border: var(--border-color);
+          .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5px;
+            &:not(:last-child) {
+              border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            }
+
+            .count {
+              text-align: left;
+              width: 30%;
+            }
+            .item__total,
+            .item__remaining,
+            .item__priority {
+              text-align: center;
+              font-weight: bold;
+            }
+
+            .item__name {
+              width: 40%;
+            }
+            .item__total {
+              width: 15%;
+            }
+            .item__remaining {
+              width: 50%;
+            }
+            .item__priority {
+              transform: scale(1.5);
+              width: 15%;
+            }
           }
         }
       }
