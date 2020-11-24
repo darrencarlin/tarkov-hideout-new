@@ -91,7 +91,7 @@ function App() {
           <Route component={Hideout} />
         </Switch>
         <Footer />
-        <GA page="hideout" code="G-SYZEGNJZK0" />
+        {/* <GA page="hideout" code="G-SYZEGNJZK0" /> */}
       </Router>
     );
   }
