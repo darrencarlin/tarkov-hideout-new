@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 // Redux
-import { useSelector, useDispatch } from "react-redux";
-import { tabsSelector } from "../slices/tabs";
-import { updateHideout, setPercentage } from "../slices/hideout";
+import { useDispatch } from "react-redux";
+import {
+  updateHideout,
+  setPercentage,
+  prioritizeModule,
+} from "../slices/hideout";
 // Styles
 import styles from "./styles/module.module.scss";
 
@@ -50,7 +53,7 @@ function Module({ mod, moduleIndex }) {
                 <input
                   className={styles.item__complete}
                   type="checkbox"
-                  defaultChecked={item.complete}
+                  checked={item.complete}
                   onClick={(evt) => {
                     const checked = evt.target.checked;
                     dispatch(
@@ -128,6 +131,25 @@ function Module({ mod, moduleIndex }) {
             </div>
           </>
         )}
+        <div className={styles.prioritize}>
+          <span>Prioritize {module} </span>
+          <input
+            type="checkbox"
+            checked={mod.prioritize}
+            onClick={(evt) => {
+              const checked = evt.target.checked;
+              dispatch(
+                prioritizeModule({
+                  moduleIndex,
+                  mod,
+                  module,
+                  level,
+                  checked,
+                })
+              );
+            }}
+          />
+        </div>
       </div>
     </div>
   );

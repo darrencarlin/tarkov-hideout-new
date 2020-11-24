@@ -84,6 +84,33 @@ export const hideoutSlice = createSlice({
         });
       }
     },
+    prioritizeModule: (state, { payload: { checked, mod, moduleIndex } }) => {
+      const items = _.uniq(_.map(mod.item_requirments, "item"));
+
+      state.hideout.modules[moduleIndex].prioritize = checked;
+
+      state.hideout.valuable_items.forEach((item) => {
+        if (items.includes(item.item)) {
+          item.priority = checked;
+        }
+      });
+      state.hideout.electronic_items.forEach((item) => {
+        if (items.includes(item.item)) {
+          item.priority = checked;
+        }
+      });
+      state.hideout.hardware_items.forEach((item) => {
+        if (items.includes(item.item)) {
+          item.priority = checked;
+        }
+      });
+      state.hideout.medical_items.forEach((item) => {
+        if (items.includes(item.item)) {
+          item.priority = checked;
+        }
+      });
+    },
+
     updatePriority: (state, { payload: { string, index, item, checked } }) => {
       // upating the individual item priority based on the checked value
       state.hideout[string][index] = {
@@ -102,6 +129,7 @@ export const {
   updatePriority,
   getCurrentHideout,
   setPercentage,
+  prioritizeModule,
 } = hideoutSlice.actions;
 
 export const hideoutSelector = (state) => state.hideout;

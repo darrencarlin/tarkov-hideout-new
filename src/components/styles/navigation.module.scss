@@ -1,12 +1,14 @@
 .donate {
   display: flex;
+
   justify-content: center;
-  align-items: flex-end;
-  align-content: flex-end;
+  align-items: center;
+  align-content: center;
   width: 100%;
   img {
     margin: 0;
   }
+
   a {
     display: inline-block;
     border: 1px solid white;
@@ -18,13 +20,15 @@
 @media screen and (min-width: 768px) {
   .donate {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
-    align-items: flex-end;
-    align-content: flex-end;
+    align-items: center;
+    align-content: center;
     width: 100%;
     img {
       margin: 0;
     }
+
     a {
       border: 1px solid white;
       border-radius: 10px;
