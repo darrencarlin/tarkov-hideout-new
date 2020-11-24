@@ -17,7 +17,6 @@ function Footer() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {" "}
           info@tarkov-hideout.com
         </a>
       </p>
