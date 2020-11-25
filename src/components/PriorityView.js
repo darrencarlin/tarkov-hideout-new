@@ -41,9 +41,12 @@ function PriorityView() {
                 return (
                   <li className={styles.item} key={index}>
                     <span className={styles.item__name}>{item.item}</span>
-                    <span className={styles.item__total}>{item.total}</span>
+                    {/*  <span className={styles.item__total}>{item.total}</span>
                     <span className={styles.item__remaining}>
                       {item.remaining}
+                    </span> */}
+                    <span className={styles.count}>
+                      {item.total - item.remaining} / {item.total}
                     </span>
                   </li>
                 );
@@ -54,9 +57,12 @@ function PriorityView() {
                 return (
                   <li className={styles.item} key={index}>
                     <span className={styles.item__name}>{item.item}</span>
-                    <span className={styles.item__total}>{item.total}</span>
+                    {/*   <span className={styles.item__total}>{item.total}</span>
                     <span className={styles.item__remaining}>
                       {item.remaining}
+                    </span> */}
+                    <span className={styles.count}>
+                      {item.total - item.remaining} / {item.total}
                     </span>
                   </li>
                 );
@@ -67,13 +73,23 @@ function PriorityView() {
                 return (
                   <li className={styles.item} key={index}>
                     <span className={styles.item__name}>{item.item}</span>
-                    <span className={styles.item__total}>
+                    {/*  <span className={styles.item__total}>
                       {item.total
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </span>
                     <span className={styles.item__remaining}>
                       {item.remaining
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    </span> */}
+
+                    <span className={styles.count}>
+                      {(item.total - item.remaining)
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                      /{" "}
+                      {item.total
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                     </span>
