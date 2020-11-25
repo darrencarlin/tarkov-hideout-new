@@ -6,6 +6,7 @@ import {
   updateHideout,
   setPercentage,
   prioritizeModule,
+  markModuleComplete,
 } from "../slices/hideout";
 // Styles
 import styles from "./styles/module.module.scss";
@@ -35,7 +36,11 @@ function Module({ mod, moduleIndex }) {
         </h3>
 
         <span className={styles.header__complete}>
-          <BsCheckCircle title="Mark this item as complete!" />
+          {mod.complete ? (
+            <BsCheckCircle title="This module is complete!" />
+          ) : (
+            ""
+          )}
         </span>
       </div>
       <div className={styles.body}>
@@ -133,26 +138,46 @@ function Module({ mod, moduleIndex }) {
           </>
         )}
         <div className={styles.prioritize}>
-          <label htmlFor={moduleIndex}>
-            Prioritize {module} {level}
-          </label>
-          <input
-            type="checkbox"
-            id={moduleIndex}
-            checked={mod.prioritize}
-            onClick={(evt) => {
-              const checked = evt.target.checked;
-              dispatch(
-                prioritizeModule({
-                  moduleIndex,
-                  mod,
-                  module,
-                  level,
-                  checked,
-                })
-              );
-            }}
-          />
+          <span>
+            <button
+              className="buttonLink"
+              onClick={() => {
+                dispatch(
+                  markModuleComplete({
+                    moduleIndex,
+                    mod,
+                    module,
+                    level,
+                  })
+                );
+                dispatch(setPercentage());
+              }}
+            >
+              {mod.complete ? "Reset Module" : " Mark Complete"}
+            </button>
+          </span>
+          <span>
+            <label htmlFor={moduleIndex}>
+              Prioritize {module} {level}
+            </label>
+            <input
+              type="checkbox"
+              id={moduleIndex}
+              checked={mod.prioritize}
+              onClick={(evt) => {
+                const checked = evt.target.checked;
+                dispatch(
+                  prioritizeModule({
+                    moduleIndex,
+                    mod,
+                    module,
+                    level,
+                    checked,
+                  })
+                );
+              }}
+            />
+          </span>
         </div>
       </div>
     </div>

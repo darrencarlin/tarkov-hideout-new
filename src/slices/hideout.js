@@ -118,6 +118,41 @@ export const hideoutSlice = createSlice({
         priority: checked,
       };
     },
+
+    markModuleComplete: (
+      state,
+      { payload: { moduleIndex, mod, module, level } }
+    ) => {
+      console.log(mod);
+      const items = _.uniq(_.map(mod.item_requirments, "item"));
+
+      // Set module as complete
+      state.hideout.modules[moduleIndex].complete = !state.hideout.modules[
+        moduleIndex
+      ].complete;
+      // Set all items for module as complete
+      state.hideout.modules[moduleIndex].item_requirments.forEach((item) => {
+        item.complete = !item.complete;
+      });
+
+      mod.item_requirments.forEach((item) => {
+        let currItem = item.item;
+        let amount = item.need;
+        let category = item.category;
+        let complete = !item.complete;
+
+        state.hideout[category].forEach((item) => {
+          if (item.item === currItem) {
+            // if complete, subtract, else add
+            if (complete) {
+              item.remaining -= amount;
+            } else {
+              item.remaining += amount;
+            }
+          }
+        });
+      });
+    },
   },
 });
 
@@ -130,6 +165,7 @@ export const {
   getCurrentHideout,
   setPercentage,
   prioritizeModule,
+  markModuleComplete,
 } = hideoutSlice.actions;
 
 export const hideoutSelector = (state) => state.hideout;
