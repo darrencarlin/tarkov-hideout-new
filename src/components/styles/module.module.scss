@@ -132,11 +132,25 @@
         padding: 10px 5px;
       }
     }
-    .prioritize {
+    .extras {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
       align-items: center;
       padding: 0 10px;
+
+      .markComplete,
+      .prioritize {
+        display: block;
+      }
+
+      .markComplete {
+        order: 2;
+      }
+      .prioritize {
+        margin: 0 5px 15px 5px;
+        order: 1;
+      }
       label {
         display: inline-block;
         margin: 0 20px 0 0;
@@ -273,6 +287,34 @@
 
         .title {
           padding: 10px 5px;
+        }
+      }
+
+      .extras {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+        .markComplete,
+        .prioritize {
+          display: block;
+        }
+
+        .markComplete {
+          order: 1;
+        }
+        .prioritize {
+          margin: 0;
+          order: 2;
+        }
+        label {
+          display: inline-block;
+          margin: 0 20px 0 0;
+        }
+        input {
+          transform: scale(1.5);
+          margin: 0 5px 0 0;
         }
       }
     }

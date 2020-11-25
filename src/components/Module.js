@@ -137,8 +137,8 @@ function Module({ mod, moduleIndex }) {
             </div>
           </>
         )}
-        <div className={styles.prioritize}>
-          <span>
+        <div className={styles.extras}>
+          <span className={styles.markComplete}>
             <button
               className="buttonLink"
               onClick={() => {
@@ -156,7 +156,7 @@ function Module({ mod, moduleIndex }) {
               {mod.complete ? "Reset Module" : " Mark Complete"}
             </button>
           </span>
-          <span>
+          <span className={styles.prioritize}>
             <label htmlFor={moduleIndex}>
               Prioritize {module} {level}
             </label>
