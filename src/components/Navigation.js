@@ -17,7 +17,12 @@ function Navigation() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("hideout");
-    window.location.href = "/";
+    const isRoot = location.pathname == "/";
+    if (isRoot) {
+      window.location.reload(false);
+    } else {
+      window.location.href = "/";
+    }
   };
   return (
     <nav className="section">
