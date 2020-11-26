@@ -33,6 +33,25 @@ function Profile() {
     window.location.href = "/";
   };
 
+  let version;
+
+  switch (user.version) {
+    case "se":
+      version = " Standard Edition";
+      break;
+    case "be":
+      version = " Left Behind Edition";
+      break;
+    case "pe":
+      version = " Prepare for Escape Edition";
+      break;
+    case "eod":
+      version = " Edge of Darkness Edition";
+      break;
+    case "current":
+      version = " You chose a custom hideout when you signed up!";
+  }
+
   return (
     <section className="section">
       <div className="row mw-desktop-large">
@@ -51,9 +70,7 @@ function Profile() {
                 <li>
                   <p>
                     Version:
-                    {user.version === "current"
-                      ? " You chose a custom hideout when you signed up!"
-                      : user.version}
+                    {version}
                   </p>
                 </li>
                 <li>

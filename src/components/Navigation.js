@@ -17,7 +17,7 @@ function Navigation() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("hideout");
-    window.location.reload(false);
+    window.location.href = "/";
   };
   return (
     <nav className="section">
