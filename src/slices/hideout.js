@@ -168,6 +168,14 @@ export const {
 
 export const hideoutSelector = (state) => state.hideout;
 
+export const resetHideout = (version) => async (dispatch, getState) => {
+  const res = await axios.get(
+    "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout"
+  );
+  localStorage.setItem("hideout", JSON.stringify(res.data.hideout));
+  dispatch(setHideout(res.data.hideout));
+};
+
 export const getInitialHideout = () => async (dispatch, getState) => {
   const localStorageUser = localStorage.getItem("user");
   const localStorageHideout = localStorage.getItem("hideout");

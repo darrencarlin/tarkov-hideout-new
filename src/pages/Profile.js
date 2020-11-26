@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import moment from "moment";
 // Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../slices/user";
+import { resetHideout } from "../slices/hideout";
 // Styles
 import styles from "./styles/profile.module.scss";
 
 function Profile() {
+  const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
   const { user } = useSelector(selectUser);
 
@@ -46,15 +48,41 @@ function Profile() {
                 <li>
                   <p> Email: {user.email}</p>
                 </li>
+                <li>
+                  <p>
+                    Version:
+                    {user.version === "current"
+                      ? " You chose a custom hideout when you signed up!"
+                      : user.version}
+                  </p>
+                </li>
+                <li>
+                  <p>Account created: {moment(user.createdAt).fromNow()}</p>
+                </li>
               </ul>
               <h4>Account Options </h4>
               <ul className="no-list reset">
                 {/* <li>
                   <button className={styles.btn} > Reset Password </button>
                 </li>
+                 */}
                 <li>
-                  <button className={styles.btn}> Reset Hideout </button>
-                </li> */}
+                  <button
+                    className={styles.btn}
+                    onClick={() => {
+                      if (
+                        confirm(
+                          "Are you sure you want to reset your hideout? This action cannot be reversed"
+                        )
+                      ) {
+                        localStorage.removeItem("hideout");
+                        dispatch(resetHideout());
+                      }
+                    }}
+                  >
+                    Reset Hideout
+                  </button>
+                </li>
                 <li>
                   <button
                     className={styles.btn}
