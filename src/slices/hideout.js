@@ -37,7 +37,6 @@ export const hideoutSlice = createSlice({
     setHideout: (state, { payload }) => {
       state.hideout = payload;
     },
-
     updateHideout: (
       state,
       { payload: { moduleIndex, item, checked, index, level, module } }
@@ -85,10 +84,12 @@ export const hideoutSlice = createSlice({
       }
     },
     prioritizeModule: (state, { payload: { checked, mod, moduleIndex } }) => {
+      // Get unique items from module
       const items = _.uniq(_.map(mod.item_requirments, "item"));
-
+      // Set the module as prioritized
       state.hideout.modules[moduleIndex].prioritize = checked;
-
+      // Loop through each of the item categories and mark
+      //as priority where neccessary
       state.hideout.valuable_items.forEach((item) => {
         if (items.includes(item.item)) {
           item.priority = checked;
@@ -113,10 +114,7 @@ export const hideoutSlice = createSlice({
 
     updatePriority: (state, { payload: { string, index, item, checked } }) => {
       // upating the individual item priority based on the checked value
-      state.hideout[string][index] = {
-        ...item,
-        priority: checked,
-      };
+      state.hideout[string][index].priority = checked;
     },
 
     markModuleComplete: (

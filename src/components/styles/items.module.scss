@@ -38,10 +38,7 @@
       .header__title {
         margin: 0 0 15px 0;
       }
-      .header__total {
-      }
-      .header__remaining {
-      }
+
       .header__priority {
         transform: scale(1.5);
         width: 5%;
@@ -128,15 +125,6 @@
         .header__priority {
           text-align: center;
         }
-
-        .header__title {
-        }
-        .header__total {
-        }
-        .header__remaining {
-        }
-        .header__priority {
-        }
       }
       .body {
         .itemList {
@@ -164,54 +152,4 @@
       }
     }
   }
-
-  // Item CSS
-
-  // .item {
-  //   display: flex;
-  //   justify-content: space-evenly;
-  //   align-items: center;
-  //   padding: 10px 5px;
-  //   &:not(:last-child) {
-  //     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  //   }
-
-  //   .name {
-  //     width: 50%;
-  //   }
-
-  //   .total {
-  //     width: 10%;
-  //     text-align: center;
-  //   }
-
-  //   .remaining {
-  //     width: 25%;
-  //     text-align: center;
-  //   }
-
-  //   .remaining {
-  //   }
-  //   input[type="checkbox"] {
-  //     transform: scale(1.5);
-  //     width: 15%;
-  //     text-align: center;
-  //   }
-  // }
-
-  // Items CSS
-
-  // .item-header {
-
-  //   .heading {
-  //     width: 50%;
-  //     h3 {
-  //       margin: 0 0 5px 0;
-  //     }
-  //   }
-
-  // .itemlist {
-  //   padding: 10px;
-  //   background-color: var(--item-background-color);
-  // }
 }

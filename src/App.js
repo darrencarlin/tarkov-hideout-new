@@ -35,10 +35,11 @@ axios.defaults.baseURL =
 
 function App() {
   // Get initial data if available (user, hideout) from local storage
-  const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
   const { user } = useSelector(selectUser);
   let authenticated;
+
   useEffect(() => {
     if (user) {
       const decodedToken = jwtDecode(user.token);
@@ -57,46 +58,38 @@ function App() {
     !authenticated ? dispatch(getInitialHideout()) : false;
     dispatch(getUser());
     dispatch(getCount());
-    setLoading(false);
+
     const interval = setInterval(() => {
       dispatch(setStorgage({ authenticated }));
     }, 5000);
     return () => clearInterval(interval);
   }, [dispatch]);
 
-  let markup = "";
-
-  if (loading) {
-    markup = <div>Loading...</div>;
-  } else {
-    markup = (
-      <Router>
-        <Navigation />
-        <Switch>
-          <Route exact path="/" component={Hideout} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/profile" component={Profile} />
-          <AuthRoute
-            exact
-            path="/signup"
-            component={Signup}
-            authenticated={authenticated}
-          />
-          <AuthRoute
-            exact
-            path="/login"
-            component={Login}
-            authenticated={authenticated}
-          />
-          <Route component={Hideout} />
-        </Switch>
-        <Footer />
-        {/* <GA page="hideout" code="G-SYZEGNJZK0" /> */}
-      </Router>
-    );
-  }
-
-  return markup;
+  return (
+    <Router>
+      <Navigation />
+      <Switch>
+        <Route exact path="/" component={Hideout} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/profile" component={Profile} />
+        <AuthRoute
+          exact
+          path="/signup"
+          component={Signup}
+          authenticated={authenticated}
+        />
+        <AuthRoute
+          exact
+          path="/login"
+          component={Login}
+          authenticated={authenticated}
+        />
+        <Route component={Hideout} />
+      </Switch>
+      <Footer />
+      {/* <GA page="hideout" code="G-SYZEGNJZK0" /> */}
+    </Router>
+  );
 }
 
 export default App;

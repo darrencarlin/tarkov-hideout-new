@@ -6,6 +6,7 @@ import PriorityView from "../components/PriorityView";
 import ItemsView from "../components/ItemsView";
 import ModulesView from "../components/ModulesView";
 import BackToTop from "../components/BackToTop";
+import PercentageCircle from "../components/PercentageCircle";
 // Redux
 import { useSelector } from "react-redux";
 import { tabsSelector } from "../slices/tabs";
@@ -28,6 +29,7 @@ function Hideout() {
           {!modules_view && !priority_view && <ItemsView />}
           <ModulesView />
           <BackToTop />
+          <PercentageCircle />
         </div>
       </div>
     </section>
