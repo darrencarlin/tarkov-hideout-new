@@ -11,7 +11,7 @@ function Footer() {
         <SiFirebase title="Firebase" /> <SiNetlify title="Netlify" />
       </div>
       <p>
-        Issues? Comments? email me at{" "}
+        Issues? Comments? Suggestions? email me at{" "}
         <a
           href="mailto:info@tarkovhideout.com"
           target="_blank"
