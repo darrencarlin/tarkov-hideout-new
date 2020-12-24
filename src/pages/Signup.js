@@ -187,7 +187,7 @@ function Signup() {
               {loading ? "Loading..." : "Sign up"}
             </button>
             <p>
-              Already have an account? <Link to="/signup">Login</Link>
+              Already have an account? <Link to="/login">Login</Link>
             </p>
           </form>
         </div>
