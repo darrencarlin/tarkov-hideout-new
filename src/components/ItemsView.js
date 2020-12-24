@@ -51,6 +51,7 @@ function ItemsView() {
                   <input
                     className={`${styles.item__priority}`}
                     type="checkbox"
+                    title="Prioritize this item"
                     checked={item.priority}
                     onClick={(evt) => {
                       const checked = evt.target.checked;
@@ -89,6 +90,7 @@ function ItemsView() {
                   <input
                     className={styles.item__priority}
                     type="checkbox"
+                    title="Prioritize this item"
                     checked={item.priority}
                     onClick={(evt) => {
                       const checked = evt.target.checked;
@@ -127,6 +129,7 @@ function ItemsView() {
                   <input
                     className={styles.item__priority}
                     type="checkbox"
+                    title="Prioritize this item"
                     checked={item.priority}
                     onClick={(evt) => {
                       const checked = evt.target.checked;
@@ -178,6 +181,7 @@ function ItemsView() {
                   <input
                     className={styles.item__priority}
                     type="checkbox"
+                    title="Prioritize this item"
                     checked={item.priority}
                     onClick={(evt) => {
                       const checked = evt.target.checked;

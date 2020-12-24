@@ -59,6 +59,7 @@ function Module({ mod, moduleIndex }) {
                 <input
                   className={styles.item__complete}
                   type="checkbox"
+                  title={item.complete ? "Mark incomplete" : "Mark complete"}
                   checked={item.complete}
                   onClick={(evt) => {
                     const checked = evt.target.checked;
@@ -162,6 +163,9 @@ function Module({ mod, moduleIndex }) {
             </label>
             <input
               type="checkbox"
+              title={
+                mod.prioritize ? "Deprioritize Module" : "Prioritize Module"
+              }
               id={moduleIndex}
               checked={mod.prioritize}
               onClick={(evt) => {
