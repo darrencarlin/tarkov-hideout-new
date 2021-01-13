@@ -240,20 +240,21 @@ export const setStorgage = ({ authenticated }) => async (
 
   if (hasChanged) {
     dispatch(setPrevHideout(updatedHideout));
-    console.log("%cSetting local storage!", "color: #7FFF00");
+    // console.log("%cSetting local storage!", "color: #7FFF00");
     localStorage.setItem("hideout", JSON.stringify(updatedHideout));
   }
 
-  console.log("isRoot: ", isRoot);
-  console.log("authenticated: ", authenticated);
-  console.log("hasChanged: ", hasChanged);
+  // console.log("isRoot: ", isRoot);
+  // console.log("authenticated: ", authenticated);
+  // console.log("hasChanged: ", hasChanged);
 
   if (isRoot && authenticated && hasChanged) {
-    console.log("%cSetting firebase storage!", "color: #7FFF00");
+    //  console.log("%cSetting firebase storage!", "color: #7FFF00");
     const { token, userId } = user.user;
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     };
+
     await axios.post(
       `https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/${userId}`,
       updatedHideout,
