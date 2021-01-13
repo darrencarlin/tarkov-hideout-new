@@ -11,6 +11,7 @@ import axios from "axios";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import AuthRoute from "./util/AuthRoute";
+import AdminRoute from "./util/AdminRoute";
 import GA from "./components/GoogleAnalytics";
 // Pages
 import Hideout from "./pages/Hideout";
@@ -43,7 +44,6 @@ function App() {
   useEffect(() => {
     if (user) {
       const decodedToken = jwtDecode(user.token);
-
       if (decodedToken.exp * 1000 < Date.now()) {
         authenticated = false;
         localStorage.removeItem("user");
@@ -70,7 +70,9 @@ function App() {
       <Navigation />
       <Switch>
         <Route exact path="/" component={Hideout} />
-        <Route exact path="/dashboard" component={Dashboard} />
+
+        <AdminRoute exact path="/dashboard" component={Dashboard} user={user} />
+
         <Route exact path="/profile" component={Profile} />
         <AuthRoute
           exact

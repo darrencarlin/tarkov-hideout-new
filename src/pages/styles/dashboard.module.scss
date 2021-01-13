@@ -1,0 +1,68 @@
+.dashboard {
+  .items {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+    padding: 10px;
+    background-color: var(--item-background-color);
+    box-shadow: var(--box-shadow);
+    border: var(--border-color);
+    .item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      &:last-child {
+        margin: 10px 0 0 0;
+        border-bottom: 0;
+      }
+      .item__name {
+        width: 60%;
+        margin: 0 10px 0 0;
+      }
+      .item__required {
+        width: 10%;
+        margin: 0 10px;
+      }
+      .item__edit {
+        width: 10%;
+        margin: 10px;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: underline;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .item__delete {
+        width: 10%;
+        margin: 10px 0 10px 10px;
+        text-decoration: underline;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .item__editing {
+        font-weight: bold;
+      }
+      .item__add {
+        width: 30%;
+        margin: 10px;
+        text-decoration: underline;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+      }
+      [contenteditable]:focus {
+        background: #fff;
+        color: #333;
+        border-radius: 5px;
+      }
+    }
+  }
+}

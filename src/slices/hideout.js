@@ -11,10 +11,19 @@ if (localStorage.getItem("hideout")) {
 export const hideoutSlice = createSlice({
   name: "hideout",
   initialState: {
+    version: initialHideout,
     hideout: initialHideout,
     prevHideout: initialHideout,
   },
   reducers: {
+    updateVersion: (
+      state,
+      { payload: { category, index, item, updatedItem, updatedAmount } }
+    ) => {
+      // version.hideout[category][index].total = updatedAmount;
+      // version.hideout[category][index].remaining = updatedAmount;
+      // version.hideout[category][index].item = updatedItem;
+    },
     setPercentage: (state) => {
       const modules = state.hideout.modules;
       const total = state.hideout.modules.length;
@@ -121,7 +130,6 @@ export const hideoutSlice = createSlice({
       state,
       { payload: { moduleIndex, mod, module, level } }
     ) => {
-      console.log(mod);
       const items = _.uniq(_.map(mod.item_requirments, "item"));
 
       // Set module as complete
@@ -151,6 +159,11 @@ export const hideoutSlice = createSlice({
         });
       });
     },
+    addNewItem: (state, { payload: { newItem, category } }) => {
+      state.version[category].push(newItem);
+    },
+    addNewModule: (state, { payload }) => {},
+    removeItem: (state, { payload }) => {},
   },
 });
 
@@ -164,6 +177,10 @@ export const {
   setPercentage,
   prioritizeModule,
   markModuleComplete,
+  updateVersion,
+  addNewItem,
+  addNewModule,
+  removeItem,
 } = hideoutSlice.actions;
 
 export const hideoutSelector = (state) => state.hideout;
@@ -227,6 +244,10 @@ export const setStorgage = ({ authenticated }) => async (
     localStorage.setItem("hideout", JSON.stringify(updatedHideout));
   }
 
+  console.log("isRoot: ", isRoot);
+  console.log("authenticated: ", authenticated);
+  console.log("hasChanged: ", hasChanged);
+
   if (isRoot && authenticated && hasChanged) {
     console.log("%cSetting firebase storage!", "color: #7FFF00");
     const { token, userId } = user.user;
@@ -239,6 +260,13 @@ export const setStorgage = ({ authenticated }) => async (
       options
     );
   }
+};
+
+export const updateHideoutVersion = () => async (dispatch, getState) => {
+  const {
+    hideout: { version },
+  } = getState();
+  console.log(version);
 };
 
 export default hideoutSlice.reducer;

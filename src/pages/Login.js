@@ -33,7 +33,9 @@ function Login(props) {
       });
       dispatch(setHideout(hideout.data));
       localStorage.setItem("hideout", JSON.stringify(hideout.data));
-      history.push("/");
+      //history.push("/");
+      // I think this solves a user not being authenticated (without a refresh) when they login
+      window.location.href = "/";
     } catch (err) {
       setLoading(false);
       console.log(err.response.data);
