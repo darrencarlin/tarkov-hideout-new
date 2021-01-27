@@ -4,13 +4,14 @@ import moment from "moment";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../slices/user";
-import { resetHideout } from "../slices/hideout";
+import { resetHideout, setPercentage } from "../slices/hideout";
 // Styles
 import styles from "./styles/profile.module.scss";
 
 function Profile() {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
+  const [newVersion, setNewVersion] = useState("Standard Edition");
   const { user } = useSelector(selectUser);
 
   const deleteUser = async () => {
@@ -84,21 +85,47 @@ function Profile() {
                 </li>
                  */}
                 <li>
-                  <button
-                    className={styles.btn}
-                    onClick={() => {
-                      if (
-                        confirm(
-                          "Are you sure you want to reset your hideout? This action cannot be reversed"
-                        )
-                      ) {
-                        localStorage.removeItem("hideout");
-                        dispatch(resetHideout());
-                      }
-                    }}
-                  >
-                    Reset Hideout
-                  </button>
+                  <h5>Reset Hideout (Choose version)</h5>
+                </li>
+                <li className={styles.reset}>
+                  <div className={styles.form}>
+                    <select
+                      name="version"
+                      id="version"
+                      className="input"
+                      onChange={(evt) => setNewVersion(evt.target.value)}
+                    >
+                      <option value="Standard Edition">Standard Edition</option>
+                      <option value="Left Behind Edition">
+                        Left Behind Edition
+                      </option>
+                      <option value="Prepare for Escape Edition">
+                        Prepare for Escape Edition
+                      </option>
+                      <option value="Edge of Darkness Edition">
+                        Edge of Darkness Edition
+                      </option>
+                    </select>
+                    <button
+                      className={styles.btn}
+                      onClick={() => {
+                        if (
+                          confirm(
+                            "Are you sure you want to reset your hideout? This action cannot be reversed"
+                          )
+                        ) {
+                          localStorage.removeItem("hideout");
+                          dispatch(resetHideout(newVersion));
+                          dispatch(setPercentage());
+                        }
+                      }}
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </li>
+                <li>
+                  <br />
                 </li>
                 <li>
                   <button

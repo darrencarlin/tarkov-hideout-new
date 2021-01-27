@@ -37,6 +37,7 @@ export const hideoutSlice = createSlice({
 
       state.hideout.percentage = parseInt(((count / total) * 100).toFixed());
     },
+
     getCurrentHideout: (state) => state.hideout,
 
     setPrevHideout: (state, { payload }) => {
@@ -173,6 +174,7 @@ export const {
   setErrors,
   updateHideout,
   updatePriority,
+  getCurrentVersion,
   getCurrentHideout,
   setPercentage,
   prioritizeModule,
@@ -185,10 +187,33 @@ export const {
 
 export const hideoutSelector = (state) => state.hideout;
 
+export const versionSelector = (state) => state.hideout.hideout_version;
+
 export const resetHideout = (version) => async (dispatch, getState) => {
-  const res = await axios.get(
-    "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout"
+  console.log(version);
+  let newVersion = "";
+  switch (version) {
+    case "Standard Edition":
+      newVersion = "se";
+      break;
+    case "Left Behind Edition":
+      newVersion = "lb";
+      break;
+    case "Prepare for Escape Edition":
+      newVersion = "pe";
+      break;
+    case "Edge of Darkness Edition":
+      newVersion = "eod";
+      break;
+  }
+
+  console.log(newVersion);
+  // http://localhost:5001/tarkov-hideout-d2603/us-central1/api/hideout
+  const res = await axios.post(
+    "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout",
+    { newVersion }
   );
+  console.log(res);
   localStorage.setItem("hideout", JSON.stringify(res.data.hideout));
   dispatch(setHideout(res.data.hideout));
 };

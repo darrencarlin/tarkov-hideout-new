@@ -34,6 +34,9 @@ import "./styles/formbase.min.css";
 axios.defaults.baseURL =
   "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api";
 
+// axios.defaults.baseURL =
+//   "http://localhost:5001/tarkov-hideout-d2603/us-central1/api/";
+
 function App() {
   // Get initial data if available (user, hideout) from local storage
 
@@ -55,7 +58,9 @@ function App() {
         authenticated = true;
       }
     }
+
     !authenticated ? dispatch(getInitialHideout()) : false;
+
     dispatch(getUser());
     dispatch(getCount());
 
@@ -70,9 +75,7 @@ function App() {
       <Navigation />
       <Switch>
         <Route exact path="/" component={Hideout} />
-
         <AdminRoute exact path="/dashboard" component={Dashboard} user={user} />
-
         <Route exact path="/profile" component={Profile} />
         <AuthRoute
           exact

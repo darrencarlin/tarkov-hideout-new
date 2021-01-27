@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
-import { VscAccount, VscSignIn, VscSignOut } from "react-icons/vsc";
+import { VscAccount, VscSignIn, VscSignOut, VscInfo } from "react-icons/vsc";
 
 // Redux
 import { useSelector } from "react-redux";
 import { selectCount } from "../slices/count";
 import { selectUser } from "../slices/user";
+import { hideoutSelector } from "../slices/hideout";
 // Styles
 import styles from "./styles/navigation.module.scss";
 
 function Navigation() {
   const { count } = useSelector(selectCount);
   const { user } = useSelector(selectUser);
-
+  const {
+    hideout: { hideout_version },
+  } = useSelector(hideoutSelector);
+  console.log(user);
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("hideout");
@@ -40,7 +44,10 @@ function Navigation() {
           <ul className="no-list reset">
             <li>
               <Link to="/">
-                <h1>Tarkov Hideout</h1>
+                <h1>Tarkov Hideout</h1>{" "}
+                <span>
+                  <VscInfo title="Hideout up to date with V12.9" /> v12.9
+                </span>
               </Link>
             </li>
             {count > 0 && (
@@ -50,6 +57,18 @@ function Navigation() {
                 </Fade>
               </li>
             )}
+
+            <li>
+              {user ? (
+                <span>
+                  {hideout_version === "12.9"
+                    ? ""
+                    : "Looks like your hideout is out of date.. reset through your profile page..."}
+                </span>
+              ) : (
+                ""
+              )}
+            </li>
           </ul>
           <ul className="no-list reset">
             {user !== null && user ? (

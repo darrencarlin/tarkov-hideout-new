@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/"
+  "proxy": "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout"
 }
