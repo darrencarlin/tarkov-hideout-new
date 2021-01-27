@@ -17,7 +17,6 @@ function Profile() {
   const deleteUser = async () => {
     const { userId, token } = user;
 
-    console.log(token);
     const options = {
       headers: { Authorization: `Bearer ${token}` },
     };

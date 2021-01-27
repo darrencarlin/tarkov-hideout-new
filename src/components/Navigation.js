@@ -17,7 +17,7 @@ function Navigation() {
   const {
     hideout: { hideout_version },
   } = useSelector(hideoutSelector);
-  console.log(user);
+
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("hideout");
