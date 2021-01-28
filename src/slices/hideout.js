@@ -234,7 +234,7 @@ export const getInitialHideout = () => async (dispatch, getState) => {
   }
   // if there is a currently a hideout (in local storage)
   if (localStorageHideout === null) {
-    const res = await axios.get(
+    const res = await axios.post(
       "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout"
     );
     localStorage.setItem("hideout", JSON.stringify(res.data.hideout));
