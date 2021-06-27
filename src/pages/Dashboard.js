@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 import {
-  hideoutSelector,
+  versionSelector,
   updateVersion,
   addNewItem,
   addNewModule,
   removeItem,
-} from "../slices/hideout";
+} from "../slices/dashboard";
 // Componenets
 import SaveButton from "../components/SaveButton";
 // Styles
@@ -19,7 +19,7 @@ function Dashboard() {
   const [updatedAmount, setUpdatedAmount] = useState("");
   const dispatch = useDispatch();
 
-  const { version } = useSelector(hideoutSelector);
+  const { version } = useSelector(versionSelector);
 
   useEffect(() => {
     // API call to get Standard Edition version
@@ -47,7 +47,7 @@ function Dashboard() {
           <h3>Hardware Items</h3>
           <ul className={styles.items}>
             {version.hardware_items.map((item, index) => (
-              <li className={styles.item}>
+              <li className={styles.item} key={index}>
                 <span
                   className={`${styles.item__name} ${
                     editMode === index ? styles.item__editing : ""
@@ -56,6 +56,7 @@ function Dashboard() {
                   onInput={(evt) =>
                     setUpdatedItem(evt.currentTarget.textContent)
                   }
+                  suppressContentEditableWarning={true}
                 >
                   {item.item}
                 </span>
@@ -67,6 +68,7 @@ function Dashboard() {
                   onInput={(evt) =>
                     setUpdatedAmount(evt.currentTarget.textContent)
                   }
+                  suppressContentEditableWarning={true}
                 >
                   {item.total}
                 </span>
@@ -97,7 +99,7 @@ function Dashboard() {
                 <span
                   className={styles.item__delete}
                   onClick={() => {
-                    dispatch(removeItem());
+                    dispatch(removeItem(item));
                   }}
                 >
                   Delete

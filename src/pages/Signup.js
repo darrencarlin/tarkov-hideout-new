@@ -67,7 +67,7 @@ function Signup() {
             options
           )
           .then((hideout) => {
-            dispatch(setHideout(hideout.data));
+            dispatch(setHideout(hideout.data.hideout));
             localStorage.setItem("hideout", JSON.stringify(hideout.data));
             // history.push("/");
             // I think this solves a user not being authenticated (without a refresh) when they login

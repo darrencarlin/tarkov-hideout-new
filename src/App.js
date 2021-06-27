@@ -26,6 +26,7 @@ import {
   getInitialHideout,
   setStorgage,
   setPercentage,
+  hideoutSelector,
 } from "./slices/hideout";
 import { getUser, selectUser } from "./slices/user";
 import { getCount } from "./slices/count";
@@ -42,6 +43,7 @@ function App() {
 
   const dispatch = useDispatch();
   const { user } = useSelector(selectUser);
+  const { hideout } = useSelector(hideoutSelector);
   let authenticated;
 
   useEffect(() => {
@@ -55,6 +57,7 @@ function App() {
         window.location.reload(false);
       } else {
         dispatch(setPercentage());
+
         authenticated = true;
       }
     }
