@@ -12,6 +12,7 @@ import styles from "./styles/login.module.scss";
 function Signup() {
   const { user } = useSelector(selectUser);
   const { hideout } = useSelector(hideoutSelector);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -21,7 +22,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [version, setVersion] = useState("current");
+  const [version, setVersion] = useState("se");
   const [errors, setErrors] = useState({
     email: "",
     handle: "",
@@ -33,8 +34,9 @@ function Signup() {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
-    //us-central1-tarkov-hideout-d2603.cloudfunctions.net/api
-    https: axios
+    //https:us-central1-tarkov-hideout-d2603.cloudfunctions.net/api
+
+    axios
       .post(
         "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/signup",
         {
@@ -59,7 +61,9 @@ function Signup() {
         };
 
         const userId = user.data.userId;
+
         const body = { userId, version, hideout };
+
         axios
           .post(
             "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout",
@@ -67,11 +71,14 @@ function Signup() {
             options
           )
           .then((hideout) => {
-            dispatch(setHideout(hideout.data));
-            localStorage.setItem("hideout", JSON.stringify(hideout.data));
+            dispatch(setHideout(hideout.data.hideout));
+            localStorage.setItem(
+              "hideout",
+              JSON.stringify(hideout.data.hideout)
+            );
             // history.push("/");
             // I think this solves a user not being authenticated (without a refresh) when they login
-            window.location.href = "/";
+            // window.location.href = "/";
           })
           .catch((err) => {
             setLoading(false);
@@ -172,7 +179,7 @@ function Signup() {
               value={version}
               onChange={(e) => setVersion(e.target.value)}
             >
-              <option value="current"> Use Current Hideout </option>
+              {/* <option value="current"> Use Current Hideout </option> */}
               <option value="se">Standard Edition</option>
               <option value="pe">Prepare for Escape Edition</option>
               <option value="lb">Left Behind Edition</option>

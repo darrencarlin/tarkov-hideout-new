@@ -7,7 +7,7 @@ var initialHideout = {};
 if (localStorage.getItem("hideout")) {
   initialHideout = JSON.parse(localStorage.getItem("hideout"));
 }
-
+console.log(JSON.parse(localStorage.getItem("hideout")));
 export const hideoutSlice = createSlice({
   name: "hideout",
   initialState: {

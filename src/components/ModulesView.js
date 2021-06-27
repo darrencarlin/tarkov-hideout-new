@@ -9,6 +9,7 @@ import styles from "./styles/modules.module.scss";
 
 function ModulesView() {
   const { hideout } = useSelector(hideoutSelector);
+
   const { tabs } = useSelector(tabsSelector);
   const module_view =
     hideout.modules && (tabs[0] === "all" || tabs[0] === "modules");
