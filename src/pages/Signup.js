@@ -78,7 +78,7 @@ function Signup() {
             );
             // history.push("/");
             // I think this solves a user not being authenticated (without a refresh) when they login
-            // window.location.href = "/";
+            window.location.href = "/";
           })
           .catch((err) => {
             setLoading(false);
