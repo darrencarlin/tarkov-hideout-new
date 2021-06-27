@@ -52,9 +52,8 @@ export const hideoutSlice = createSlice({
       { payload: { moduleIndex, item, checked, index, level, module } }
     ) => {
       // updating the module item to complete based on checked value
-      state.hideout.modules[moduleIndex].item_requirments[
-        index
-      ].complete = checked;
+      state.hideout.modules[moduleIndex].item_requirments[index].complete =
+        checked;
       // updating the individual item remaining number based on checked value
       state.hideout[item.category].forEach((i) => {
         if (i.item === item.item) {
@@ -134,9 +133,8 @@ export const hideoutSlice = createSlice({
       const items = _.uniq(_.map(mod.item_requirments, "item"));
 
       // Set module as complete
-      state.hideout.modules[moduleIndex].complete = !state.hideout.modules[
-        moduleIndex
-      ].complete;
+      state.hideout.modules[moduleIndex].complete =
+        !state.hideout.modules[moduleIndex].complete;
       // Set all items for module as complete
       state.hideout.modules[moduleIndex].item_requirments.forEach((item) => {
         item.complete = !item.complete;
@@ -250,41 +248,40 @@ export const getUserHideout = (userId) => async (dispatch) => {
   dispatch(setHideout(res.data.hideout));
 };
 
-export const setStorgage = ({ authenticated }) => async (
-  dispatch,
-  getState
-) => {
-  const isRoot = location.pathname == "/";
-  const { hideout, user } = getState();
-  const prevHideout = hideout.prevHideout;
-  const updatedHideout = hideout.hideout;
+export const setStorgage =
+  ({ authenticated }) =>
+  async (dispatch, getState) => {
+    const isRoot = location.pathname == "/";
+    const { hideout, user } = getState();
+    const prevHideout = hideout.prevHideout;
+    const updatedHideout = hideout.hideout;
 
-  const hasChanged = !_.isEqual(prevHideout, updatedHideout);
+    const hasChanged = !_.isEqual(prevHideout, updatedHideout);
 
-  if (hasChanged) {
-    dispatch(setPrevHideout(updatedHideout));
-    // console.log("%cSetting local storage!", "color: #7FFF00");
-    localStorage.setItem("hideout", JSON.stringify(updatedHideout));
-  }
+    if (hasChanged) {
+      dispatch(setPrevHideout(updatedHideout));
+      // console.log("%cSetting local storage!", "color: #7FFF00");
+      localStorage.setItem("hideout", JSON.stringify(updatedHideout));
+    }
 
-  // console.log("isRoot: ", isRoot);
-  // console.log("authenticated: ", authenticated);
-  // console.log("hasChanged: ", hasChanged);
+    // console.log("isRoot: ", isRoot);
+    // console.log("authenticated: ", authenticated);
+    // console.log("hasChanged: ", hasChanged);
 
-  if (isRoot && authenticated && hasChanged) {
-    //  console.log("%cSetting firebase storage!", "color: #7FFF00");
-    const { token, userId } = user.user;
-    const options = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
+    if (isRoot && authenticated && hasChanged) {
+      //  console.log("%cSetting firebase storage!", "color: #7FFF00");
+      const { token, userId } = user.user;
+      const options = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
 
-    await axios.post(
-      `https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/${userId}`,
-      updatedHideout,
-      options
-    );
-  }
-};
+      await axios.post(
+        `https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/${userId}`,
+        updatedHideout,
+        options
+      );
+    }
+  };
 
 export const updateHideoutVersion = () => async (dispatch, getState) => {
   const {
