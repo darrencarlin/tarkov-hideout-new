@@ -70,14 +70,11 @@ function Signup() {
             body,
             options
           )
-          .then((hideout) => {
-            console.log(hideout);
-            dispatch(setHideout(hideout.data.hideout));
-            localStorage.setItem(
-              "hideout",
-              JSON.stringify(hideout.data.hideout)
-            );
-            // history.push("/");
+          .then(({ data }) => {
+            console.log(data.hideout);
+            dispatch(setHideout(data.hideout));
+            localStorage.setItem("hideout", JSON.stringify(data.hideout));
+
             // I think this solves a user not being authenticated (without a refresh) when they login
             window.location.href = "/";
           })
