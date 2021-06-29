@@ -66,11 +66,12 @@ function Signup() {
 
         axios
           .post(
-            "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout",
+            "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/create",
             body,
             options
           )
           .then((hideout) => {
+            console.log(hideout);
             dispatch(setHideout(hideout.data.hideout));
             localStorage.setItem(
               "hideout",
