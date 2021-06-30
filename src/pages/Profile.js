@@ -108,7 +108,7 @@ function Profile() {
                           )
                         ) {
                           localStorage.removeItem("hideout");
-                          dispatch(resetHideout(user.userId, newVersion));
+                          dispatch(resetHideout(newVersion));
                           dispatch(setPercentage());
                         }
                       }}
