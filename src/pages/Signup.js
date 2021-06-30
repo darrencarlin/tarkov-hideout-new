@@ -71,7 +71,6 @@ function Signup() {
             options
           )
           .then(({ data }) => {
-            console.log(data.hideout);
             dispatch(setHideout(data.hideout));
             localStorage.setItem("hideout", JSON.stringify(data.hideout));
 

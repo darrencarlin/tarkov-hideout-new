@@ -191,16 +191,12 @@ export const resetHideout = (version) => async (dispatch, getState) => {
   // http://localhost:5001/tarkov-hideout-d2603/us-central1/api/hideout
   const localStorageUser = localStorage.getItem("user");
   const localUser = JSON.parse(localStorageUser);
-  console.log(localUser);
-  console.log(version);
-
-  const options = {
-    headers: { Authorization: `Bearer ${localUser.token}` },
-  };
-
   const body = {
     userId: localUser.userId,
     version: version,
+  };
+  const options = {
+    headers: { Authorization: `Bearer ${localUser.token}` },
   };
 
   // https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api
@@ -210,7 +206,6 @@ export const resetHideout = (version) => async (dispatch, getState) => {
     options
   );
 
-  console.log(res.data.hideout);
   localStorage.setItem("hideout", JSON.stringify(res.data.hideout));
   dispatch(setHideout(res.data.hideout));
 };
@@ -283,12 +278,5 @@ export const setStorgage =
       );
     }
   };
-
-export const updateHideoutVersion = () => async (dispatch, getState) => {
-  const {
-    hideout: { version },
-  } = getState();
-  console.log(version);
-};
 
 export default hideoutSlice.reducer;

@@ -63,7 +63,7 @@ function App() {
       }
     }
 
-    user?.role === "admin" ? dispatch(getInitalVersion()) : false;
+    // user?.role === "admin" ? dispatch(getInitalVersion()) : false;
     !authenticated ? dispatch(getInitialHideout()) : false;
 
     dispatch(getUser());

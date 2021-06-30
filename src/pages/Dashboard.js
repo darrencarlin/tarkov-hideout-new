@@ -13,6 +13,8 @@ import {
   addNewModuleRequirement,
   updateModule,
   removeModuleRequirement,
+  changeVersion,
+  setComplete,
 } from "../slices/dashboard";
 // Componenets
 import SaveButton from "../components/SaveButton";
@@ -22,20 +24,39 @@ import { update } from "lodash";
 
 function Dashboard() {
   const [editMode, setEditMode] = useState(null);
+
+  const [selectedVersion, setSelectedVersion] = useState("se");
   const [updatedItem, setUpdatedItem] = useState("");
   const [updatedAmount, setUpdatedAmount] = useState(0);
+  const [remainingAmount, setRemainingAmount] = useState(0);
   const dispatch = useDispatch();
 
   const { version } = useSelector(versionSelector);
-  console.log(version);
+
   useEffect(() => {
     // API call to get Standard Edition version
     // Store in version redux state
+
+    switch (version.version) {
+      case "Standard Edition":
+        setSelectedVersion("se");
+        break;
+      case "Left Behind Edition":
+        setSelectedVersion("lb");
+        break;
+      case "Prepare for Escape Edition":
+        setSelectedVersion("pe");
+        break;
+      case "Edge of Darkness Edition":
+        setSelectedVersion("eod");
+        break;
+    }
+    dispatch(getInitalVersion());
   }, []);
 
-  const changeVersion = () => {
-    // API call to get version based on dropdown
-    // Store in version redux state
+  const updateVersion = (v) => {
+    console.log(v);
+    dispatch(changeVersion(v));
   };
 
   return (
@@ -43,7 +64,16 @@ function Dashboard() {
       <div className="row mw-desktop-large">
         <div className={`col-xs-12 ${styles.column}`}>
           <h3>Choose version</h3>
-          <select name="versions" id="" className="select">
+          <select
+            name="versions"
+            id=""
+            className="select"
+            onChange={(evt) => {
+              setSelectedVersion(evt.target.value);
+              updateVersion(evt.target.value);
+            }}
+            value={selectedVersion}
+          >
             <option value="se">Standard Edition</option>
             <option value="lb">Left Behind Edition</option>
             <option value="pe">Prepare for Escape Edition</option>
@@ -57,6 +87,7 @@ function Dashboard() {
               <li className={styles.item} key={index}>
                 <span className={styles.item__name}>{item.item}</span>
                 <span
+                  title="Total"
                   className={styles.item__required}
                   contentEditable={true}
                   suppressContentEditableWarning={true}
@@ -66,6 +97,18 @@ function Dashboard() {
                 >
                   {item.total}
                 </span>
+
+                <span
+                  title="Remaining"
+                  className={styles.item__required}
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  onInput={(evt) =>
+                    setRemainingAmount(parseInt(evt.target.innerHTML))
+                  }
+                >
+                  {item.remaining}
+                </span>
                 <span
                   className={styles.item__edit}
                   onClick={() => {
@@ -73,6 +116,7 @@ function Dashboard() {
                       updateItem({
                         category: "hardware_items",
                         index: index,
+                        remaining: remainingAmount || item.remaining,
                         total: updatedAmount || item.total,
                       })
                     );
@@ -103,10 +147,18 @@ function Dashboard() {
               />
               <input
                 type="number"
-                placeholder="Amount"
+                placeholder="Total"
                 className={`${styles.item__required} input`}
                 onChange={(evt) => {
                   setUpdatedAmount(evt.target.value);
+                }}
+              />
+              <input
+                type="number"
+                className={`${styles.item__required} input`}
+                placeholder="Remain"
+                onChange={(evt) => {
+                  setRemainingAmount(evt.target.value);
                 }}
               />
               <span
@@ -116,10 +168,12 @@ function Dashboard() {
                     addNewItem({
                       category: "hardware_items",
                       item: updatedItem,
+                      remaining: remainingAmount || item.remaining,
                       total: updatedAmount,
                     })
                   );
                   setUpdatedAmount(0);
+                  setRemainingAmount(0);
                   setUpdatedItem("");
                 }}
               >
@@ -135,6 +189,7 @@ function Dashboard() {
               <li className={styles.item} key={index}>
                 <span className={styles.item__name}>{item.item}</span>
                 <span
+                  title="Total"
                   className={styles.item__required}
                   contentEditable={true}
                   suppressContentEditableWarning={true}
@@ -144,6 +199,18 @@ function Dashboard() {
                 >
                   {item.total}
                 </span>
+
+                <span
+                  title="Remaining"
+                  className={styles.item__required}
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  onInput={(evt) =>
+                    setRemainingAmount(parseInt(evt.target.innerHTML))
+                  }
+                >
+                  {item.remaining}
+                </span>
                 <span
                   className={styles.item__edit}
                   onClick={() => {
@@ -151,10 +218,12 @@ function Dashboard() {
                       updateItem({
                         category: "electronic_items",
                         index: index,
+                        remaining: remainingAmount || item.remaining,
                         total: updatedAmount || item.total,
                       })
                     );
                     setUpdatedAmount(0);
+                    setRemainingAmount(0);
                     setUpdatedItem("");
                   }}
                 >
@@ -183,10 +252,18 @@ function Dashboard() {
               />
               <input
                 type="number"
-                placeholder="Amount"
+                placeholder="Total"
                 className={`${styles.item__required} input`}
                 onChange={(evt) => {
                   setUpdatedAmount(evt.target.value);
+                }}
+              />
+              <input
+                type="number"
+                className={`${styles.item__required} input`}
+                placeholder="Remain"
+                onChange={(evt) => {
+                  setRemainingAmount(evt.target.value);
                 }}
               />
               <span
@@ -196,10 +273,12 @@ function Dashboard() {
                     addNewItem({
                       category: "electronic_items",
                       item: updatedItem,
+                      remaining: remainingAmount || item.remaining,
                       total: updatedAmount,
                     })
                   );
                   setUpdatedAmount(0);
+                  setRemainingAmount(0);
                   setUpdatedItem("");
                 }}
               >
@@ -215,6 +294,7 @@ function Dashboard() {
               <li className={styles.item} key={index}>
                 <span className={styles.item__name}>{item.item}</span>
                 <span
+                  title="Total"
                   className={styles.item__required}
                   contentEditable={true}
                   suppressContentEditableWarning={true}
@@ -225,16 +305,29 @@ function Dashboard() {
                   {item.total}
                 </span>
                 <span
+                  title="Remaining"
+                  className={styles.item__required}
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  onInput={(evt) =>
+                    setRemainingAmount(parseInt(evt.target.innerHTML))
+                  }
+                >
+                  {item.remaining}
+                </span>
+                <span
                   className={styles.item__edit}
                   onClick={() => {
                     dispatch(
                       updateItem({
                         category: "medical_items",
                         index: index,
+                        remaining: remainingAmount || item.remaining,
                         total: updatedAmount || item.total,
                       })
                     );
                     setUpdatedAmount(0);
+                    setRemainingAmount(0);
                     setUpdatedItem("");
                   }}
                 >
@@ -261,10 +354,18 @@ function Dashboard() {
               />
               <input
                 type="number"
-                placeholder="Amount"
+                placeholder="Total"
                 className={`${styles.item__required} input`}
                 onChange={(evt) => {
                   setUpdatedAmount(evt.target.value);
+                }}
+              />
+              <input
+                type="number"
+                className={`${styles.item__required} input`}
+                placeholder="Remain"
+                onChange={(evt) => {
+                  setRemainingAmount(evt.target.value);
                 }}
               />
               <span
@@ -274,10 +375,12 @@ function Dashboard() {
                     addNewItem({
                       category: "medical_items",
                       item: updatedItem,
+                      remaining: remainingAmount || item.remaining,
                       total: updatedAmount,
                     })
                   );
                   setUpdatedAmount(0);
+                  setRemainingAmount(0);
                   setUpdatedItem("");
                 }}
               >
@@ -293,6 +396,7 @@ function Dashboard() {
               <li className={styles.item} key={index}>
                 <span className={styles.item__name}>{item.item}</span>
                 <span
+                  title="Total"
                   className={styles.item__required}
                   contentEditable={true}
                   suppressContentEditableWarning={true}
@@ -303,16 +407,29 @@ function Dashboard() {
                   {item.total}
                 </span>
                 <span
+                  title="Remaining"
+                  className={styles.item__required}
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  onInput={(evt) =>
+                    setRemainingAmount(parseInt(evt.target.innerHTML))
+                  }
+                >
+                  {item.remaining}
+                </span>
+                <span
                   className={styles.item__edit}
                   onClick={() => {
                     dispatch(
                       updateItem({
                         category: "valuable_items",
                         index: index,
+                        remaining: remainingAmount || item.remaining,
                         total: updatedAmount || item.total,
                       })
                     );
                     setUpdatedAmount(0);
+                    setRemainingAmount(0);
                     setUpdatedItem("");
                   }}
                 >
@@ -339,10 +456,18 @@ function Dashboard() {
               />
               <input
                 type="number"
-                placeholder="Amount"
+                placeholder="Total"
                 className={`${styles.item__required} input`}
                 onChange={(evt) => {
                   setUpdatedAmount(evt.target.value);
+                }}
+              />
+              <input
+                type="number"
+                className={`${styles.item__required} input`}
+                placeholder="Remain"
+                onChange={(evt) => {
+                  setRemainingAmount(evt.target.value);
                 }}
               />
               <span
@@ -352,10 +477,12 @@ function Dashboard() {
                     addNewItem({
                       category: "valuable_items",
                       item: updatedItem,
+                      remaining: remainingAmount || item.remaining,
                       total: updatedAmount,
                     })
                   );
                   setUpdatedAmount(0);
+                  setRemainingAmount(0);
                   setUpdatedItem("");
                 }}
               >
@@ -371,6 +498,15 @@ function Dashboard() {
               <h3>
                 {item.module} {item.level}.
               </h3>
+              <p>
+                Complete{" "}
+                <input
+                  type="checkbox"
+                  onClick={() => {
+                    dispatch(setComplete({ moduleIndex }));
+                  }}
+                />
+              </p>
               <p className={styles.requirements}>Item Requirements</p>
               <ul className={styles.items}>
                 {item.item_requirements.map((item, itemIndex) => (
@@ -434,11 +570,12 @@ function Dashboard() {
                   <input
                     type="number"
                     className={`${styles.item__required} input`}
-                    placeholder="Amount"
+                    placeholder="Total"
                     onChange={(evt) => {
                       setUpdatedAmount(evt.target.value);
                     }}
                   />
+
                   <span
                     className={styles.item__add}
                     onClick={() => {

@@ -110,6 +110,8 @@ function Profile() {
                           localStorage.removeItem("hideout");
                           dispatch(resetHideout(newVersion));
                           dispatch(setPercentage());
+                          // forces a refresh
+                          //  window.location.href = "/";
                         }
                       }}
                     >

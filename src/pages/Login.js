@@ -38,7 +38,7 @@ function Login(props) {
       window.location.href = "/";
     } catch (err) {
       setLoading(false);
-      console.log(err.response.data);
+
       setErrors(err.response.data.general);
       const timer = setTimeout(() => {
         setErrors("");
