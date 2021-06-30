@@ -43,7 +43,7 @@ export const hideoutSlice = createSlice({
       { payload: { moduleIndex, item, checked, index, level, module } }
     ) => {
       // updating the module item to complete based on checked value
-      state.hideout.modules[moduleIndex].item_requirments[index].complete =
+      state.hideout.modules[moduleIndex].item_requirements[index].complete =
         checked;
       // updating the individual item remaining number based on checked value
       state.hideout[item.category].forEach((i) => {
@@ -52,14 +52,14 @@ export const hideoutSlice = createSlice({
         }
       });
 
-      // check if all item requirments are complete
+      // check if all item requirements are complete
       let count = 0;
       let amount = 0;
 
       state.hideout.modules.forEach((m) => {
         if (m.module === module && m.level === level) {
-          amount = m.item_requirments.length;
-          m.item_requirments.forEach((i) => {
+          amount = m.item_requirements.length;
+          m.item_requirements.forEach((i) => {
             if (i.complete) {
               count++;
             }
@@ -85,7 +85,7 @@ export const hideoutSlice = createSlice({
     },
     prioritizeModule: (state, { payload: { checked, mod, moduleIndex } }) => {
       // Get unique items from module
-      const items = _.uniq(_.map(mod.item_requirments, "item"));
+      const items = _.uniq(_.map(mod.item_requirements, "item"));
       // Set the module as prioritized
       state.hideout.modules[moduleIndex].prioritize = checked;
       // Loop through each of the item categories and mark
@@ -121,17 +121,17 @@ export const hideoutSlice = createSlice({
       state,
       { payload: { moduleIndex, mod, module, level } }
     ) => {
-      const items = _.uniq(_.map(mod.item_requirments, "item"));
+      const items = _.uniq(_.map(mod.item_requirements, "item"));
 
       // Set module as complete
       state.hideout.modules[moduleIndex].complete =
         !state.hideout.modules[moduleIndex].complete;
       // Set all items for module as complete
-      state.hideout.modules[moduleIndex].item_requirments.forEach((item) => {
+      state.hideout.modules[moduleIndex].item_requirements.forEach((item) => {
         item.complete = !item.complete;
       });
 
-      mod.item_requirments.forEach((item) => {
+      mod.item_requirements.forEach((item) => {
         let currItem = item.item;
         let amount = item.need;
         let category = item.category;

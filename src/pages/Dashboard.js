@@ -371,9 +371,9 @@ function Dashboard() {
               <h3>
                 {item.module} {item.level}.
               </h3>
-              <p className={styles.requirment}>Item Requirements</p>
+              <p className={styles.requirements}>Item Requirements</p>
               <ul className={styles.items}>
-                {item.item_requirments.map((item, itemIndex) => (
+                {item.item_requirements.map((item, itemIndex) => (
                   <li className={styles.item} key={itemIndex}>
                     <span className={styles.item__name}>{item.item}</span>
                     <span
@@ -391,7 +391,7 @@ function Dashboard() {
                       onClick={() => {
                         dispatch(
                           updateModule({
-                            category: "item_requirments",
+                            category: "item_requirements",
                             moduleIndex,
                             itemIndex,
                             total: updatedAmount || item.need,
@@ -408,7 +408,7 @@ function Dashboard() {
                       onClick={() => {
                         dispatch(
                           removeModuleItem({
-                            category: "item_requirments",
+                            category: "item_requirements",
                             moduleIndex,
                             itemIndex,
                           })
@@ -444,7 +444,7 @@ function Dashboard() {
                     onClick={() => {
                       dispatch(
                         addNewModuleItem({
-                          category: "item_requirments",
+                          category: "item_requirements",
                           moduleIndex,
                           item: updatedItem,
                           total: updatedAmount,
@@ -459,9 +459,9 @@ function Dashboard() {
                 </li>
               </ul>
 
-              <p className={styles.requirment}>Loyalty Requirements</p>
+              <p className={styles.requirements}>Loyalty Requirements</p>
               <ul className={styles.items}>
-                {item.loyalty_requirments.map((item, itemIndex) => (
+                {item.loyalty_requirements.map((item, itemIndex) => (
                   <li className={styles.item} key={itemIndex}>
                     <span className={styles.item__name}>{item.item}</span>
                     <span className={styles.item__required}>
@@ -475,7 +475,7 @@ function Dashboard() {
                       onClick={() => {
                         dispatch(
                           removeModuleRequirement({
-                            category: "loyalty_requirments",
+                            category: "loyalty_requirements",
                             moduleIndex,
                             itemIndex,
                           })
@@ -501,7 +501,7 @@ function Dashboard() {
                     onClick={() => {
                       dispatch(
                         addNewModuleRequirement({
-                          category: "loyalty_requirments",
+                          category: "loyalty_requirements",
                           moduleIndex,
                           item: updatedItem,
                         })
@@ -513,9 +513,9 @@ function Dashboard() {
                   </span>
                 </li>
               </ul>
-              <p className={styles.requirment}>Module Requirements</p>
+              <p className={styles.requirements}>Module Requirements</p>
               <ul className={styles.items}>
-                {item.module_requirments.map((item, itemIndex) => (
+                {item.module_requirements.map((item, itemIndex) => (
                   <li className={styles.item} key={itemIndex}>
                     <span className={styles.item__name}>{item.item}</span>
                     <span className={styles.item__required}>
@@ -529,7 +529,7 @@ function Dashboard() {
                       onClick={() => {
                         dispatch(
                           removeModuleRequirement({
-                            category: "module_requirments",
+                            category: "module_requirements",
                             moduleIndex,
                             itemIndex,
                           })
@@ -555,7 +555,7 @@ function Dashboard() {
                     onClick={() => {
                       dispatch(
                         addNewModuleRequirement({
-                          category: "module_requirments",
+                          category: "module_requirements",
                           moduleIndex,
                           item: updatedItem,
                         })
@@ -567,9 +567,9 @@ function Dashboard() {
                   </span>
                 </li>
               </ul>
-              <p className={styles.requirment}>Skill Requirements</p>
+              <p className={styles.requirements}>Skill Requirements</p>
               <ul className={styles.items}>
-                {item.skill_requirments.map((item, itemIndex) => (
+                {item.skill_requirements.map((item, itemIndex) => (
                   <li className={styles.item} key={itemIndex}>
                     <span className={styles.item__name}>{item.item}</span>
                     <span className={styles.item__required}>
@@ -583,7 +583,7 @@ function Dashboard() {
                       onClick={() => {
                         dispatch(
                           removeModuleRequirement({
-                            category: "skill_requirments",
+                            category: "skill_requirements",
                             moduleIndex,
                             itemIndex,
                           })
@@ -609,7 +609,7 @@ function Dashboard() {
                     onClick={() => {
                       dispatch(
                         addNewModuleRequirement({
-                          category: "skill_requirments",
+                          category: "skill_requirements",
                           moduleIndex,
                           item: updatedItem,
                         })

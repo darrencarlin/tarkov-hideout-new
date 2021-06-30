@@ -15,18 +15,18 @@ function Module({ mod, moduleIndex }) {
   const dispatch = useDispatch();
 
   const {
-    item_requirments,
-    module_requirments,
-    loyalty_requirments,
-    skill_requirments,
+    item_requirements,
+    module_requirements,
+    loyalty_requirements,
+    skill_requirements,
     module,
     level,
   } = mod;
 
-  const requirments =
-    module_requirments.length > 0 ||
-    loyalty_requirments.length > 0 ||
-    skill_requirments.length > 0;
+  const requirements =
+    module_requirements.length > 0 ||
+    loyalty_requirements.length > 0 ||
+    skill_requirements.length > 0;
 
   return (
     <div className={styles.module}>
@@ -44,9 +44,9 @@ function Module({ mod, moduleIndex }) {
         </span>
       </div>
       <div className={styles.body}>
-        {item_requirments.length > 0 && (
+        {item_requirements.length > 0 && (
           <ul className={`${styles.itemList} no-list`}>
-            {item_requirments.map((item, index) => (
+            {item_requirements.map((item, index) => (
               <li className={styles.item} key={index}>
                 <span className={styles.item__name}>{item.item}</span>
                 {/* <span className={styles.item__have}>{item.have}</span> */}
@@ -80,16 +80,16 @@ function Module({ mod, moduleIndex }) {
             ))}
           </ul>
         )}
-        {requirments && (
+        {requirements && (
           <>
-            <h4>Other Requirments</h4>
-            <div className={styles.other_requirments}>
-              {module_requirments.length > 0 && (
+            <h4>Other Requirements</h4>
+            <div className={styles.other_requirements}>
+              {module_requirements.length > 0 && (
                 <ul className={styles.modules}>
                   <li className={styles.title}>
                     <h5>Modules</h5>
                   </li>
-                  {module_requirments.map((item, index) => (
+                  {module_requirements.map((item, index) => (
                     <li className={styles.item} key={index}>
                       <span className={styles.item__level}>
                         {item.item.split(",")[1].trim()}
@@ -101,12 +101,12 @@ function Module({ mod, moduleIndex }) {
                   ))}
                 </ul>
               )}
-              {skill_requirments.length > 0 && (
+              {skill_requirements.length > 0 && (
                 <ul className={styles.skills}>
                   <li className={styles.title}>
                     <h5>Skills</h5>
                   </li>
-                  {skill_requirments.map((item, index) => (
+                  {skill_requirements.map((item, index) => (
                     <li className={styles.item} key={index}>
                       <span className={styles.item__level}>
                         {item.item.split(",")[1].trim()}
@@ -118,12 +118,12 @@ function Module({ mod, moduleIndex }) {
                   ))}
                 </ul>
               )}
-              {loyalty_requirments.length > 0 && (
+              {loyalty_requirements.length > 0 && (
                 <ul className={styles.loyalty}>
                   <li className={styles.title}>
                     <h5>Loyalty</h5>
                   </li>
-                  {loyalty_requirments.map((item, index) => (
+                  {loyalty_requirements.map((item, index) => (
                     <li className={styles.item} key={index}>
                       <span className={styles.item__level}>
                         {item.item.split(",")[1].trim()}
