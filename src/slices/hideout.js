@@ -7,7 +7,7 @@ var initialHideout = {};
 if (localStorage.getItem("hideout")) {
   initialHideout = JSON.parse(localStorage.getItem("hideout"));
 }
-console.log(JSON.parse(localStorage.getItem("hideout")));
+
 export const hideoutSlice = createSlice({
   name: "hideout",
   initialState: {
@@ -171,29 +171,27 @@ export const {
 
 export const hideoutSelector = (state) => state.hideout;
 
-export const versionSelector = (state) => state.hideout.hideout_version;
-
 export const resetHideout = (version) => async (dispatch, getState) => {
-  let newVersion = "";
-  switch (version) {
-    case "Standard Edition":
-      newVersion = "se";
-      break;
-    case "Left Behind Edition":
-      newVersion = "lb";
-      break;
-    case "Prepare for Escape Edition":
-      newVersion = "pe";
-      break;
-    case "Edge of Darkness Edition":
-      newVersion = "eod";
-      break;
-  }
+  // let newVersion = "";
+  // switch (version) {
+  //   case "Standard Edition":
+  //     newVersion = "se";
+  //     break;
+  //   case "Left Behind Edition":
+  //     newVersion = "lb";
+  //     break;
+  //   case "Prepare for Escape Edition":
+  //     newVersion = "pe";
+  //     break;
+  //   case "Edge of Darkness Edition":
+  //     newVersion = "eod";
+  //     break;
+  // }
 
   // http://localhost:5001/tarkov-hideout-d2603/us-central1/api/hideout
   const res = await axios.post(
     "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout",
-    { newVersion }
+    { version }
   );
 
   localStorage.setItem("hideout", JSON.stringify(res.data.hideout));

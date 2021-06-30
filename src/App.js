@@ -31,6 +31,7 @@ import {
 import { getUser, selectUser } from "./slices/user";
 import { getCount } from "./slices/count";
 import "./styles/formbase.min.css";
+import { getInitalVersion } from "./slices/dashboard";
 
 axios.defaults.baseURL =
   "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api";
@@ -43,7 +44,7 @@ function App() {
 
   const dispatch = useDispatch();
   const { user } = useSelector(selectUser);
-  const { hideout } = useSelector(hideoutSelector);
+
   let authenticated;
 
   useEffect(() => {
@@ -62,6 +63,7 @@ function App() {
       }
     }
 
+    user?.role === "admin" ? dispatch(getInitalVersion()) : false;
     !authenticated ? dispatch(getInitialHideout()) : false;
 
     dispatch(getUser());

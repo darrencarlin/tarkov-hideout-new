@@ -11,7 +11,7 @@ import styles from "./styles/profile.module.scss";
 function Profile() {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
-  const [newVersion, setNewVersion] = useState("Standard Edition");
+  const [newVersion, setNewVersion] = useState("se");
   const { user } = useSelector(selectUser);
 
   const deleteUser = async () => {
@@ -94,16 +94,10 @@ function Profile() {
                       className="input"
                       onChange={(evt) => setNewVersion(evt.target.value)}
                     >
-                      <option value="Standard Edition">Standard Edition</option>
-                      <option value="Left Behind Edition">
-                        Left Behind Edition
-                      </option>
-                      <option value="Prepare for Escape Edition">
-                        Prepare for Escape Edition
-                      </option>
-                      <option value="Edge of Darkness Edition">
-                        Edge of Darkness Edition
-                      </option>
+                      <option value="se">Standard Edition</option>
+                      <option value="lb">Left Behind Edition</option>
+                      <option value="pe">Prepare for Escape Edition</option>
+                      <option value="eod">Edge of Darkness Edition</option>
                     </select>
                     <button
                       className={styles.btn}
