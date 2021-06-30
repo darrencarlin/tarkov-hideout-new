@@ -190,7 +190,7 @@ export const resetHideout = (version) => async (dispatch, getState) => {
 
   // http://localhost:5001/tarkov-hideout-d2603/us-central1/api/hideout
   const res = await axios.post(
-    "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout",
+    "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/create",
     { version }
   );
 
