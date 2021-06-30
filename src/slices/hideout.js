@@ -171,7 +171,7 @@ export const {
 
 export const hideoutSelector = (state) => state.hideout;
 
-export const resetHideout = (userId, version) => async (dispatch, getState) => {
+export const resetHideout = (version) => async (dispatch, getState) => {
   // let newVersion = "";
   // switch (version) {
   //   case "Standard Edition":
@@ -189,11 +189,28 @@ export const resetHideout = (userId, version) => async (dispatch, getState) => {
   // }
 
   // http://localhost:5001/tarkov-hideout-d2603/us-central1/api/hideout
+  const localStorageUser = localStorage.getItem("user");
+  const localUser = JSON.parse(localStorageUser);
+  console.log(localUser);
+  console.log(version);
+
+  const options = {
+    headers: { Authorization: `Bearer ${localUser.token}` },
+  };
+
+  const body = {
+    userId: localUser.userId,
+    version: version,
+  };
+
+  // https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api
   const res = await axios.post(
-    "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/create",
-    { userId, version }
+    "https://us-central1-tarkov-hideout-d2603.cloudfunctions.net/api/hideout/reset",
+    body,
+    options
   );
 
+  console.log(res.data.hideout);
   localStorage.setItem("hideout", JSON.stringify(res.data.hideout));
   dispatch(setHideout(res.data.hideout));
 };
